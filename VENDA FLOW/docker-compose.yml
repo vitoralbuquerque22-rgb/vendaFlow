@@ -1,0 +1,55 @@
+# Ambiente local de desenvolvimento do VendaFlow.
+#   docker compose up -d        -> sobe banco, e-mail de teste e API
+#   npm run dev                 -> sobe o frontend em http://localhost:5173
+# E-mails enviados pelo sistema aparecem em http://localhost:8025 (Mailpit).
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: vendaflow
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-vendaflow}
+      POSTGRES_DB: vendaflow
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vendaflow"]
+      interval: 5s
+      retries: 10
+
+  mailpit:
+    image: axllent/mailpit:latest
+    restart: unless-stopped
+    ports:
+      - "8025:8025"
+
+  api:
+    build:
+      context: .
+      dockerfile: server/Dockerfile
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_URL: postgres://vendaflow:${POSTGRES_PASSWORD:-vendaflow}@db:5432/vendaflow
+      SMTP_HOST: ${SMTP_HOST:-mailpit}
+      SMTP_PORT: ${SMTP_PORT:-1025}
+    # Em desenvolvimento o código é montado da sua máquina e o servidor reinicia sozinho ao salvar
+    command: ["deno", "run", "-A", "--watch", "main.ts"]
+    volumes:
+      - ./server:/app/server
+      - ./base44:/app/base44:ro
+      - uploads:/app/data/uploads
+      - denocache:/deno-dir
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:
+  uploads:
+  denocache:

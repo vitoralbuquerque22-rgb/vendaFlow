@@ -111,15 +111,7 @@ export default function Acesso() {
     if (!emailRecuperacao) { toast.error("Digite seu email"); return; }
     setLoadingRecuperacao(true);
     try {
-      const usuarios = await base44.entities.User.filter({ email: emailRecuperacao });
-      if (usuarios.length === 0) { toast.error("Email não encontrado"); return; }
-      const codigo = Math.random().toString(36).substring(2, 10).toUpperCase();
-      const link = `${window.location.origin}${createPageUrl('Acesso')}?recuperar=${codigo}&email=${emailRecuperacao}`;
-      await base44.integrations.Core.SendEmail({
-        to: emailRecuperacao,
-        subject: "Recuperação de Senha - CRM SDR",
-        body: `Olá,\n\nPara redefinir sua senha clique: ${link}\n\nVálido por 24h.\n\nEquipe CRM SDR`,
-      });
+      await base44.auth.resetPasswordRequest(emailRecuperacao);
       toast.success("Email enviado! Verifique sua caixa de entrada");
       setMostrarRecuperarSenha(false);
       setEmailRecuperacao("");
@@ -138,7 +130,7 @@ export default function Acesso() {
     setLoadingRedefinir(true);
     try {
       toast.info("Redirecionando para redefinir senha...");
-      window.location.href = `https://app.base44.com/reset-password?email=${emailRecuperacao}`;
+      window.location.href = "/forgot-password";
     } catch (error) {
       toast.error("Erro ao redefinir senha: " + error.message);
     } finally {

@@ -1,0 +1,20 @@
+{
+  "tasks": {
+    "dev": "deno run -A --watch main.ts",
+    "start": "deno run -A main.ts",
+    "cache": "deno cache main.ts deps.ts"
+  },
+  "imports": {
+    "@anthropic-ai/sdk": "npm:@anthropic-ai/sdk@^0",
+    "@std/encoding": "jsr:@std/encoding@^1",
+    "@std/path": "jsr:@std/path@^1",
+    "bcryptjs": "npm:bcryptjs@2.4.3",
+    "jose": "npm:jose@5.9.6",
+    "nodemailer": "npm:nodemailer@6.9.16",
+    "postgres": "npm:postgres@3.4.5",
+    "socket_io": "https://deno.land/x/socket_io@0.2.1/mod.ts"
+  },
+  "compilerOptions": {
+    "strict": false
+  }
+}

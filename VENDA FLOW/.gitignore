@@ -1,6 +1,11 @@
 #env
 .env
 .env.*
+!.env.example
+
+# Servidor
+server/.generated
+server/uploads
 
 # Logs
 logs

@@ -78,7 +78,7 @@ export default function LeadsExternos({ onImportarLead }) {
 
   // URL do webhook para exibir ao usuário
   const appId = appParams.appId;
-  const webhookUrl = `https://api.base44.com/api/apps/${appId}/functions/webhookReceberLead?empresaId=${empresaId || "SEU_EMPRESA_ID"}`;
+  const webhookUrl = `${window.location.origin}/api/apps/${appId}/functions/webhookReceberLead?empresaId=${empresaId || "SEU_EMPRESA_ID"}`;
 
   const copiarUrl = () => {
     navigator.clipboard.writeText(webhookUrl);
