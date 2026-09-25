@@ -1,6 +1,6 @@
 # Ambiente local de desenvolvimento do VendaFlow.
 #   docker compose up -d        -> sobe banco, e-mail de teste e API
-#   npm run dev                 -> sobe o frontend em http://localhost:5173
+#   cd frontend && npm run dev  -> sobe o frontend em http://localhost:5173
 # E-mails enviados pelo sistema aparecem em http://localhost:8025 (Mailpit).
 
 services:
@@ -27,20 +27,18 @@ services:
       - "8025:8025"
 
   api:
-    build:
-      context: .
-      dockerfile: server/Dockerfile
+    build: ./backend
     restart: unless-stopped
     env_file: .env
     environment:
       DATABASE_URL: postgres://vendaflow:${POSTGRES_PASSWORD:-vendaflow}@db:5432/vendaflow
       SMTP_HOST: ${SMTP_HOST:-mailpit}
       SMTP_PORT: ${SMTP_PORT:-1025}
-    # Em desenvolvimento o código é montado da sua máquina e o servidor reinicia sozinho ao salvar
-    command: ["deno", "run", "-A", "--watch", "main.ts"]
+    # Em desenvolvimento o código é montado da sua máquina. No Windows, depois de alterar,
+    # rode: docker compose restart api
+    command: ["deno", "run", "-A", "--watch", "src/main.ts"]
     volumes:
-      - ./server:/app/server
-      - ./base44:/app/base44:ro
+      - ./backend:/app
       - uploads:/app/data/uploads
       - denocache:/deno-dir
     ports:

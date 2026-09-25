@@ -3,9 +3,8 @@
 .env.*
 !.env.example
 
-# Servidor
-server/.generated
-server/uploads
+# Backend
+backend/uploads
 
 # Logs
 logs
