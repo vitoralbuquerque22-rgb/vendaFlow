@@ -1,5 +1,5 @@
 import { createClientFromRequest } from "../../src/sdk.ts";
-import { chamar3C, credencialGestor, respostaErro3C } from "../../src/telefonia3c.ts";
+import { chamar3C, credencialGestor, respostaErro3C, listarAgentes } from "../../src/telefonia3c.ts";
 
 export default async (req) => {
   if (req.method === 'OPTIONS') {
@@ -30,7 +30,7 @@ export default async (req) => {
   const [resEquipes, resQualificacoes, resAgentes] = await Promise.all([
     chamar3C(cred, '/teams'),
     chamar3C(cred, '/qualification_lists'),
-    chamar3C(cred, '/agents', { query: { per_page: 100 } }),
+    listarAgentes(cred).then((data) => ({ ok: true, json: async () => ({ data }) })), // todas as páginas
   ]);
 
   const dadosEquipes        = await resEquipes.json().catch(() => ({}));

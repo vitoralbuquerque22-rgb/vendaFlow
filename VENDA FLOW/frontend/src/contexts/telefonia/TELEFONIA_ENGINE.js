@@ -155,6 +155,17 @@ export const MENSAGENS_FALHA_AGENTE = {
   [SOCKET_EVENTS.AGENT_LEAVE_WORK_BREAK_FAILED]: 'O 3C Plus não conseguiu encerrar o seu intervalo.',
 };
 
+/**
+ * A chamada do evento é de ligação manual?
+ * Na manual, o 3C conecta primeiro o RAMAL do agente e só depois chama o cliente: o
+ * call-was-connected chega no momento da discagem, com o telefone ainda tocando
+ * ("Chamada conectada ao agente"). O atendimento do cliente é o manual-call-was-answered.
+ */
+export function ehChamadaManual(data) {
+  const call = data?.call ?? data?.callHistory ?? {};
+  return call.call_mode === 'manual' || call.mode === 'manual';
+}
+
 export function rotaDoEvento(evento) {
   return ROTA_POR_EVENTO.get(String(evento || '')) ?? null;
 }

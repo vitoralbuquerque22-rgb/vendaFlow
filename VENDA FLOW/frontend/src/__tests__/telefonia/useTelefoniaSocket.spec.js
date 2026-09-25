@@ -110,6 +110,30 @@ describe('useTelefoniaSocket', () => {
       expect(handlers.onAvisoOperacional).toHaveBeenCalledWith('list-empty', { list: { id: 3 } });
     });
 
+    it('ligação MANUAL: call-was-connected é o ramal conectado, não atendimento do cliente', async () => {
+      const onManualRamalConectado = vi.fn();
+      const { handlers, emitir, callLifecycle } = await montar({ onManualRamalConectado });
+      emitir('call-was-connected', { call: { id: 'call:1:2:abc', call_mode: 'manual' } });
+      expect(onManualRamalConectado).toHaveBeenCalledTimes(1);
+      expect(handlers.onAtendimento).not.toHaveBeenCalled();
+      expect(callLifecycle.dispatch).not.toHaveBeenCalledWith('CONNECTED', expect.anything());
+    });
+
+    it('ligação do DISCADOR: call-was-connected continua sendo atendimento', async () => {
+      const onManualRamalConectado = vi.fn();
+      const { handlers, emitir } = await montar({ onManualRamalConectado });
+      emitir('call-was-connected', { call: { id: 'call:1:2:xyz', call_mode: 'dialer' } });
+      expect(handlers.onAtendimento).toHaveBeenCalledTimes(1);
+      expect(onManualRamalConectado).not.toHaveBeenCalled();
+    });
+
+    it('manual-call-was-answered (cliente atendeu a manual) continua indo para onManualAtendida', async () => {
+      const { handlers, emitir } = await montar();
+      emitir('manual-call-was-answered', { call: { id: 'call:1:2:abc', call_mode: 'manual' } });
+      expect(handlers.onManualAtendida).toHaveBeenCalledTimes(1);
+      expect(handlers.onAtendimento).not.toHaveBeenCalled();
+    });
+
     it('ignora eventos informativos do discador (call-was-created, call-is-trying, call-was-amd)', async () => {
       const { handlers, emitir, callLifecycle } = await montar();
       ['call-was-created', 'call-is-trying', 'call-was-amd', 'call-history-was-created'].forEach((e) => emitir(e));

@@ -430,6 +430,16 @@ export function TelefoniaProvider({ children }) {
       }
     },
     onAvisoOperacional: (evento, data) => mostrarAvisoOperacional(evento, data),
+    // Ligação manual: o 3C conectou o ramal e está chamando o cliente — ainda NÃO é atendimento
+    // (o atendimento chega por manual-call-was-answered → marcarLigacaoManualAtendida)
+    onManualRamalConectado: (data) => {
+      const sessao = manualCallSessionRef.current;
+      if (!sessao || sessao.chamada_id_3cplus || !data?.call?.id) return;
+      const atualizada = { ...sessao, chamada_id_3cplus: data.call.id };
+      setManualCallSession(atualizada);
+      manualCallSessionRef.current = atualizada;
+      if (sessao.id) atualizarCallSession(sessao.id, { chamada_id_3cplus: data.call.id }).catch(() => {});
+    },
   });
 
   // ── Heartbeat de reconciliação ───────────────────────────────

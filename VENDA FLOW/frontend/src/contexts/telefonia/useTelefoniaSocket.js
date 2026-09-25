@@ -11,7 +11,7 @@
  */
 import { useRef, useEffect } from 'react';
 import { callLifecycle } from './CallLifecycleManager';
-import { ROTAS_SOCKET, rotaDoEvento, acaoCicloDeVida } from './TELEFONIA_ENGINE';
+import { ROTAS_SOCKET, rotaDoEvento, acaoCicloDeVida, ehChamadaManual } from './TELEFONIA_ENGINE';
 import { criarSocketPonte, salaAgente } from './socketPonte';
 
 // ── Singleton global — garante que só existe 1 assinatura por usuário ──
@@ -38,10 +38,11 @@ export function useTelefoniaSocket({
   onReconnect,
   onLoginFailed,
   onAvisoOperacional,
+  onManualRamalConectado,
 }) {
   // Refs para os handlers — evita stale closures sem reconectar
   const handlersRef = useRef({});
-  handlersRef.current = { onAtendimento, onNaoAtendido, onEncerramento, onManualMode, onManualAtendida, onEventoAgente, onReconnect, onLoginFailed, onAvisoOperacional };
+  handlersRef.current = { onAtendimento, onNaoAtendido, onEncerramento, onManualMode, onManualAtendida, onEventoAgente, onReconnect, onLoginFailed, onAvisoOperacional, onManualRamalConectado };
 
   const socketRef = useRef(null);
 
@@ -70,9 +71,11 @@ export function useTelefoniaSocket({
 
     socket.onAny((eventName, data) => {
       const evento = String(eventName || '');
+      // Ligação manual: call-was-connected/answered = ramal conectado, cliente ainda não atendeu
+      const ramalConectadoManual = rotaDoEvento(evento) === ROTAS_SOCKET.ATENDIDA && ehChamadaManual(data);
 
       // ── Dispatch para CallLifecycleManager (camada paralela) ──
-      switch (acaoCicloDeVida(evento)) {
+      switch (ramalConectadoManual ? null : acaoCicloDeVida(evento)) {
         case 'START_CALL':
           callLifecycle.dispatch('START_CALL', { campaignId: data?.campaign_id });
           break;
@@ -129,7 +132,8 @@ export function useTelefoniaSocket({
           h.onManualAtendida?.(data);
           break;
         case ROTAS_SOCKET.ATENDIDA:
-          h.onAtendimento?.(data, evento);
+          if (ramalConectadoManual) h.onManualRamalConectado?.(data, evento);
+          else h.onAtendimento?.(data, evento);
           break;
         case ROTAS_SOCKET.AVISO_OPERACIONAL:
           h.onAvisoOperacional?.(evento, data);

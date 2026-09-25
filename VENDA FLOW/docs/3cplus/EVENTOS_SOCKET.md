@@ -95,6 +95,7 @@ Nome técnico já observado: `manual-call-was-answered`.
 | `call-was-amd` | Emitido, **fora do swagger**: caixa postal detectada |
 | `call-history-was-created` | Histórico em `callHistory` (o swagger diz `call`) |
 | Eventos do discador | `call.id` no formato `call:{empresa}:{campanha}:{telephony_id}` |
+| **Ligação manual** | `call-was-connected` chega **no momento da discagem**, com o telefone do cliente ainda tocando: o 3C conecta primeiro o ramal do agente ("Chamada conectada ao agente") e depois chama o cliente. Não é atendimento. Confirmado em 25/09/2026: histórico da chamada `mode: manual`, `status_id: 5` (Não atendida), `speaking_time: 00:00:00`. O CRM distingue pelo `call.call_mode` (`dialer` × `manual`) |
 | Eventos com agente | trazem `agent.agent_status` (`status`, `logged_campaign`, `call`, `connected_time`...) |
 
 ## Códigos de status (biblioteca de dados)

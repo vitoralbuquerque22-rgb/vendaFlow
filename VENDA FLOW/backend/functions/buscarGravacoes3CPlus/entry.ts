@@ -1,5 +1,5 @@
 import { createClientFromRequest } from "../../src/sdk.ts";
-import { chamar3C, credencialGestor, respostaErro3C } from "../../src/telefonia3c.ts";
+import { chamar3C, credencialGestor, respostaErro3C, listarAgentes } from "../../src/telefonia3c.ts";
 
 const CORS = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, Authorization' };
 
@@ -51,7 +51,7 @@ export default async (req) => {
     const agentesMapNomeEmail = {}; // name.lower → email
     const agentesMapEmailNome = {}; // email → name
     try {
-      const respAgentes = await chamar3C(cred, '/agents', { query: { per_page: 200 }, timeoutMs: 8000 });
+      const respAgentes = await listarAgentes(cred).then((data) => ({ ok: true, json: async () => ({ data }) })); // todas as páginas
       if (respAgentes.ok) {
         const dadosAgentes = await respAgentes.json().catch(() => ({}));
         const lista = Array.isArray(dadosAgentes) ? dadosAgentes : (dadosAgentes?.data || []);

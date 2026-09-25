@@ -1,5 +1,5 @@
 import { createClientFromRequest } from "../../src/sdk.ts";
-import { chamar3C, credencialGestor, Erro3C } from "../../src/telefonia3c.ts";
+import { chamar3C, credencialGestor, Erro3C, listarAgentes } from "../../src/telefonia3c.ts";
 
 /**
  * sincronizarTelefonia3CPlus
@@ -226,7 +226,7 @@ export default async (req) => {
       // 3. Atualizar status dos agentes no campo Integracao
       // -------------------------------------------------------
       try {
-        const respAgentes = await chamar3C(cred, '/agents');
+        const respAgentes = await listarAgentes(cred).then((data) => ({ ok: true, json: async () => ({ data }) })); // todas as páginas
         if (respAgentes.ok) {
           const dadosAgentes = await respAgentes.json();
           const agentes = dadosAgentes.data || dadosAgentes || [];

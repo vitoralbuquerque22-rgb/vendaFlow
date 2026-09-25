@@ -1,5 +1,5 @@
 import { createClientFromRequest } from "../../src/sdk.ts";
-import { chamar3C, credencialGestor, decryptToken, respostaErro3C } from "../../src/telefonia3c.ts";
+import { chamar3C, credencialGestor, decryptToken, listarAgentes, respostaErro3C } from "../../src/telefonia3c.ts";
 
 // Usado só para CRIPTOGRAFAR o token pessoal legado antes de gravar no perfil
 function b64decode(s) { return Uint8Array.from(atob(s), c => c.charCodeAt(0)); }
@@ -83,10 +83,7 @@ export default async (req) => {
     // 2. Buscar todos os agentes do 3C Plus
     let agentes3C = [];
     try {
-      const resp = await chamar3C(cred, '/agents', { query: { per_page: 200 } });
-      if (!resp.ok) throw new Error(`API 3C Plus retornou ${resp.status}`);
-      const dados = await resp.json();
-      agentes3C = dados.data || [];
+      agentes3C = await listarAgentes(cred); // todas as páginas (a API pagina em 25)
     } catch (e) {
       return Response.json(
         { error: `Falha ao buscar agentes do 3C Plus: ${e.message}` },

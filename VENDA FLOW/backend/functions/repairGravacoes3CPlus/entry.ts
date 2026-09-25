@@ -1,5 +1,5 @@
 import { createClientFromRequest } from "../../src/sdk.ts";
-import { chamar3C, credencialGestor, Erro3C, mascarar } from "../../src/telefonia3c.ts";
+import { chamar3C, credencialGestor, Erro3C, mascarar, listarAgentes } from "../../src/telefonia3c.ts";
 
 const CORS = {
   'Access-Control-Allow-Origin': '*',
@@ -42,7 +42,7 @@ export default async (req) => {
     const agentesMapNomeEmail = {};
     const agentesMapEmailNome = {};
     try {
-      const respA = await chamar3C(cred, '/agents', { query: { per_page: 200 }, timeoutMs: 8000 });
+      const respA = await listarAgentes(cred).then((data) => ({ ok: true, json: async () => ({ data }) })); // todas as páginas
       if (respA.ok) {
         const dadosA = await respA.json().catch(() => ({}));
         const lista = Array.isArray(dadosA) ? dadosA : (dadosA?.data || []);

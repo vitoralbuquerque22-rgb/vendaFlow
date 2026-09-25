@@ -112,16 +112,29 @@ async function resolverAgenteId(
   if (!tokenGestor) throw new Erro3C("Token de gestor do 3C Plus não configurado (necessário para localizar o agente pelo ramal).");
 
   const gestor: Credencial3C = { papel: "gestor", dominio: "", baseUrl, token: tokenGestor, origem: "servico", config };
-  const resp = await chamar3C(gestor, "/agents", { query: { per_page: 500 } });
-  const dados = await lerJson(resp);
-  if (!resp.ok) throw new Erro3C("Não foi possível listar os agentes do 3C Plus", resp.status, dados);
-  const agente = (dados?.data ?? []).find((a: any) => String(a?.extension?.extension_number) === ramal && a?.active !== false);
+  const agente = (await listarAgentes(gestor)).find((a: any) => String(a?.extension?.extension_number) === ramal && a?.active !== false);
   if (!agente) throw new Erro3C(`Nenhum agente ativo com o ramal ${ramal} no 3C Plus.`, 404);
 
   // Guarda para as próximas requisições
   if (perfil?.id) await api.asServiceRole.entities.UserProfile.update(perfil.id, { id_3cplus: Number(agente.id) }).catch(() => {});
   console.log(`[3C] agente do ramal ${ramal} resolvido: id ${agente.id} (empresa ${empresaId})`);
   return Number(agente.id);
+}
+
+/**
+ * Todos os agentes da organização. A API pagina em 25 e ignora per_page maior, então
+ * percorremos as páginas de meta.pagination.
+ */
+export async function listarAgentes(cred: Credencial3C): Promise<any[]> {
+  const todos: any[] = [];
+  for (let pagina = 1, total = 1; pagina <= total && pagina <= 100; pagina++) {
+    const resp = await chamar3C(cred, "/agents", { query: { page: pagina, per_page: 100 } });
+    const dados = await lerJson(resp);
+    if (!resp.ok) throw new Erro3C("Não foi possível listar os agentes do 3C Plus", resp.status, dados);
+    todos.push(...(dados?.data ?? []));
+    total = Number(dados?.meta?.pagination?.total_pages) || 1;
+  }
+  return todos;
 }
 
 // ── Chamada à API ──
