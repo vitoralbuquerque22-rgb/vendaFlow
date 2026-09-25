@@ -1,0 +1,130 @@
+{
+  "name": "PDI",
+  "type": "object",
+  "properties": {
+    "colaborador_email": {
+      "type": "string",
+      "description": "Email do colaborador"
+    },
+    "colaborador_nome": {
+      "type": "string",
+      "description": "Nome do colaborador"
+    },
+    "mes_referencia": {
+      "type": "string",
+      "description": "M\u00eas de refer\u00eancia (YYYY-MM)"
+    },
+    "analise_completa": {
+      "type": "string",
+      "description": "An\u00e1lise completa de performance gerada pela IA"
+    },
+    "metricas_periodo": {
+      "type": "object",
+      "description": "M\u00e9tricas do per\u00edodo analisado",
+      "properties": {
+        "totalLigacoes": {
+          "type": "number"
+        },
+        "ligacoesAtendidas": {
+          "type": "number"
+        },
+        "reunioesAgendadas": {
+          "type": "number"
+        },
+        "reunioesRealizadas": {
+          "type": "number"
+        },
+        "taxaAtendimento": {
+          "type": "number"
+        },
+        "taxaAgendamento": {
+          "type": "number"
+        },
+        "taxaComparecimento": {
+          "type": "number"
+        },
+        "tempoMedioResposta": {
+          "type": "number"
+        },
+        "totalLeads": {
+          "type": "number"
+        },
+        "totalAtividades": {
+          "type": "number"
+        },
+        "totalTarefas": {
+          "type": "number"
+        },
+        "tarefasConcluidas": {
+          "type": "number"
+        },
+        "taxaConclusao": {
+          "type": "number"
+        }
+      }
+    },
+    "pontos_fortes": {
+      "type": "array",
+      "description": "Lista de pontos fortes identificados",
+      "items": {
+        "type": "string"
+      }
+    },
+    "areas_melhoria": {
+      "type": "array",
+      "description": "Lista de \u00e1reas que precisam melhorar",
+      "items": {
+        "type": "string"
+      }
+    },
+    "plano_acao": {
+      "type": "array",
+      "description": "Plano de a\u00e7\u00e3o para os pr\u00f3ximos 30 dias",
+      "items": {
+        "type": "object",
+        "properties": {
+          "titulo": {
+            "type": "string"
+          },
+          "objetivo": {
+            "type": "string"
+          },
+          "como_fazer": {
+            "type": "string"
+          },
+          "meta": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "em_andamento",
+        "concluido",
+        "atrasado"
+      ],
+      "default": "em_andamento",
+      "description": "Status do PDI"
+    },
+    "data_revisao": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Data da \u00faltima revis\u00e3o"
+    },
+    "revisado_por": {
+      "type": "string",
+      "description": "Email de quem revisou o PDI"
+    },
+    "observacoes_gestor": {
+      "type": "string",
+      "description": "Observa\u00e7\u00f5es do gestor sobre o PDI"
+    }
+  },
+  "required": [
+    "colaborador_email",
+    "mes_referencia",
+    "analise_completa"
+  ]
+}

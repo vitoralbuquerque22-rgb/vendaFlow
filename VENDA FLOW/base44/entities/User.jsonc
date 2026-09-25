@@ -1,0 +1,64 @@
+{
+  "name": "User",
+  "type": "object",
+  "properties": {
+    "foto_perfil": {
+      "type": "string",
+      "description": "URL da foto de perfil do usu\u00e1rio"
+    },
+    "apelido": {
+      "type": "string",
+      "description": "Apelido ou nome preferido pelo usu\u00e1rio"
+    },
+    "meta_mensal": {
+      "type": "object",
+      "description": "Metas configuradas para o usu\u00e1rio",
+      "properties": {
+        "ligacoes": {
+          "type": "number",
+          "description": "Meta de liga\u00e7\u00f5es por m\u00eas"
+        },
+        "reunioes_agendadas": {
+          "type": "number",
+          "description": "Meta de reuni\u00f5es agendadas por m\u00eas"
+        },
+        "reunioes_realizadas": {
+          "type": "number",
+          "description": "Meta de reuni\u00f5es realizadas por m\u00eas"
+        },
+        "vendas": {
+          "type": "number",
+          "description": "Meta de vendas por m\u00eas"
+        },
+        "leads": {
+          "type": "number",
+          "description": "Meta de leads atribu\u00eddos por m\u00eas"
+        },
+        "tarefas_concluidas": {
+          "type": "number",
+          "description": "Meta de tarefas conclu\u00eddas por m\u00eas"
+        },
+        "receita": {
+          "type": "number",
+          "description": "Meta de receita mensal (R$)"
+        }
+      }
+    },
+    "telefone": {
+      "type": "string",
+      "description": "Telefone de contato do usu\u00e1rio"
+    },
+    "data_nascimento": {
+      "type": "string",
+      "format": "date",
+      "description": "Data de nascimento"
+    }
+  },
+  "required": [
+    "foto_perfil",
+    "apelido",
+    "meta_mensal",
+    "telefone",
+    "data_nascimento"
+  ]
+}

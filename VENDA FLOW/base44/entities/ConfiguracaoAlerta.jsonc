@@ -1,0 +1,111 @@
+{
+  "name": "ConfiguracaoAlerta",
+  "type": "object",
+  "properties": {
+    "nome": {
+      "type": "string",
+      "description": "Nome do alerta"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "meta_atingida",
+        "meta_em_risco",
+        "anomalia",
+        "baixa_performance",
+        "alta_performance"
+      ],
+      "description": "Tipo de alerta"
+    },
+    "metrica": {
+      "type": "string",
+      "enum": [
+        "leads",
+        "mql",
+        "conexoes",
+        "reunioes_marcadas",
+        "reunioes_realizadas",
+        "vendas",
+        "faturamento",
+        "ticket_medio",
+        "taxa_conversao",
+        "ligacoes",
+        "tarefas_concluidas"
+      ],
+      "description": "M\u00e9trica a ser monitorada"
+    },
+    "condicao": {
+      "type": "string",
+      "enum": [
+        "maior_que",
+        "menor_que",
+        "igual_a",
+        "maior_igual",
+        "menor_igual",
+        "percentual_meta"
+      ],
+      "description": "Condi\u00e7\u00e3o para disparo"
+    },
+    "valor_threshold": {
+      "type": "number",
+      "description": "Valor limite para disparo do alerta"
+    },
+    "periodo_avaliacao": {
+      "type": "string",
+      "enum": [
+        "diario",
+        "semanal",
+        "mensal"
+      ],
+      "default": "diario",
+      "description": "Per\u00edodo de avalia\u00e7\u00e3o do alerta"
+    },
+    "destinatarios": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Emails dos destinat\u00e1rios do alerta"
+    },
+    "notificar_no_app": {
+      "type": "boolean",
+      "default": true,
+      "description": "Mostrar notifica\u00e7\u00e3o no app"
+    },
+    "enviar_email": {
+      "type": "boolean",
+      "default": false,
+      "description": "Enviar email de notifica\u00e7\u00e3o"
+    },
+    "ativo": {
+      "type": "boolean",
+      "default": true,
+      "description": "Alerta ativo"
+    },
+    "escopo": {
+      "type": "string",
+      "enum": [
+        "empresa",
+        "equipe",
+        "individual"
+      ],
+      "default": "empresa",
+      "description": "Escopo do alerta (empresa toda, por equipe ou individual)"
+    },
+    "usuario_especifico": {
+      "type": "string",
+      "description": "Email do usu\u00e1rio espec\u00edfico (se escopo = individual)"
+    },
+    "equipe_especifica": {
+      "type": "string",
+      "description": "ID da equipe espec\u00edfica (se escopo = equipe)"
+    }
+  },
+  "required": [
+    "nome",
+    "tipo",
+    "metrica",
+    "condicao",
+    "valor_threshold"
+  ]
+}

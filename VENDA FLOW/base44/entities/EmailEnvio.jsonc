@@ -1,0 +1,81 @@
+{
+  "name": "EmailEnvio",
+  "type": "object",
+  "properties": {
+    "template_id": {
+      "type": "string",
+      "description": "ID do template usado"
+    },
+    "template_nome": {
+      "type": "string",
+      "description": "Nome do template"
+    },
+    "campanha_id": {
+      "type": "string",
+      "description": "ID da campanha agendada (se aplic\u00e1vel)"
+    },
+    "destinatario_email": {
+      "type": "string",
+      "description": "Email do destinat\u00e1rio"
+    },
+    "destinatario_nome": {
+      "type": "string",
+      "description": "Nome do destinat\u00e1rio"
+    },
+    "lead_id": {
+      "type": "string",
+      "description": "ID do lead"
+    },
+    "assunto": {
+      "type": "string",
+      "description": "Assunto do email"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "enviado",
+        "erro"
+      ],
+      "description": "Status do envio"
+    },
+    "abriu": {
+      "type": "boolean",
+      "default": false,
+      "description": "Se o email foi aberto"
+    },
+    "data_abertura": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Data/hora da primeira abertura"
+    },
+    "quantidade_aberturas": {
+      "type": "number",
+      "default": 0,
+      "description": "N\u00famero de vezes que abriu"
+    },
+    "clicou": {
+      "type": "boolean",
+      "default": false,
+      "description": "Se clicou em algum link"
+    },
+    "data_clique": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Data/hora do primeiro clique"
+    },
+    "quantidade_cliques": {
+      "type": "number",
+      "default": 0,
+      "description": "N\u00famero de cliques totais"
+    },
+    "enviado_por": {
+      "type": "string",
+      "description": "Email do usu\u00e1rio que enviou"
+    }
+  },
+  "required": [
+    "template_id",
+    "destinatario_email",
+    "status"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "name": "FaturamentoLead",
+  "type": "object",
+  "properties": {
+    "lead_id": {
+      "type": "string",
+      "description": "ID do lead"
+    },
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa (tenant)"
+    },
+    "revenue_amount": {
+      "type": "number",
+      "description": "Valor do faturamento mensal em R$"
+    },
+    "observacao": {
+      "type": "string",
+      "description": "Observa\u00e7\u00e3o sobre o faturamento"
+    },
+    "created_by": {
+      "type": "string",
+      "description": "Email de quem registrou (null = sistema/autom\u00e1tico)"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "manual",
+        "landing_page",
+        "api",
+        "form"
+      ],
+      "default": "manual",
+      "description": "Origem do registro"
+    }
+  },
+  "required": [
+    "lead_id",
+    "empresaId",
+    "revenue_amount"
+  ]
+}

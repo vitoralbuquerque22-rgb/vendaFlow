@@ -1,0 +1,67 @@
+{
+  "name": "AvaliacaoProduto",
+  "type": "object",
+  "properties": {
+    "produto_id": {
+      "type": "string",
+      "description": "ID do produto avaliado"
+    },
+    "produto_nome": {
+      "type": "string",
+      "description": "Nome do produto"
+    },
+    "usuario_email": {
+      "type": "string",
+      "description": "Email do usu\u00e1rio que fez a avalia\u00e7\u00e3o"
+    },
+    "usuario_nome": {
+      "type": "string",
+      "description": "Nome do usu\u00e1rio"
+    },
+    "nota": {
+      "type": "number",
+      "description": "Nota obtida (de 0 a 10)"
+    },
+    "total_perguntas": {
+      "type": "number",
+      "description": "Total de perguntas do quiz"
+    },
+    "acertos": {
+      "type": "number",
+      "description": "N\u00famero de acertos"
+    },
+    "aprovado": {
+      "type": "boolean",
+      "description": "Se passou na avalia\u00e7\u00e3o (>= 7.0)"
+    },
+    "respostas": {
+      "type": "array",
+      "description": "Respostas do usu\u00e1rio",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pergunta": {
+            "type": "string"
+          },
+          "resposta_usuario": {
+            "type": "number"
+          },
+          "resposta_correta": {
+            "type": "number"
+          },
+          "acertou": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "data_avaliacao": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "produto_id",
+    "usuario_email"
+  ]
+}

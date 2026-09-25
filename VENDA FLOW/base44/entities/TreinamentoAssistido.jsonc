@@ -1,0 +1,86 @@
+{
+  "name": "TreinamentoAssistido",
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa (tenant)"
+    },
+    "gravacao_id": {
+      "type": "string",
+      "description": "FK \u2192 GravacaoLigacao"
+    },
+    "user_email": {
+      "type": "string",
+      "description": "Email de quem assistiu"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "iniciado",
+        "em_progresso",
+        "concluido"
+      ],
+      "description": "Status do progresso",
+      "default": "iniciado"
+    },
+    "progresso_segundos": {
+      "type": "number",
+      "description": "Posi\u00e7\u00e3o atual no \u00e1udio em segundos",
+      "default": 0
+    },
+    "duracao_total_segundos": {
+      "type": "number",
+      "description": "Dura\u00e7\u00e3o total \u2014 c\u00f3pia do momento da grava\u00e7\u00e3o"
+    },
+    "percentual_concluido": {
+      "type": "number",
+      "description": "progresso/duracao*100 \u2014 calculado",
+      "default": 0
+    },
+    "replays": {
+      "type": "number",
+      "description": "N\u00famero de vezes que assistiu",
+      "default": 0
+    },
+    "tempo_total_assistido": {
+      "type": "number",
+      "description": "Segundos acumulados incluindo replays",
+      "default": 0
+    },
+    "notas_pessoais": {
+      "type": "string",
+      "description": "Anota\u00e7\u00f5es do SDR durante o treinamento"
+    },
+    "primeira_vez_em": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Quando iniciou pela primeira vez"
+    },
+    "ultima_vez_em": {
+      "type": "string",
+      "format": "date-time",
+      "description": "\u00daltimo acesso"
+    },
+    "concluido_em": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Quando atingiu 90%+ de progresso"
+    },
+    "certificado_emitido": {
+      "type": "boolean",
+      "description": "Certificado de conclus\u00e3o emitido",
+      "default": false
+    },
+    "certificado_em": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Data de emiss\u00e3o do certificado"
+    }
+  },
+  "required": [
+    "empresaId",
+    "gravacao_id",
+    "user_email"
+  ]
+}

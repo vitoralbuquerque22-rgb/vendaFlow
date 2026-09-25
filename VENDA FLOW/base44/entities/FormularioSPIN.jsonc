@@ -1,0 +1,69 @@
+{
+  "name": "FormularioSPIN",
+  "type": "object",
+  "properties": {
+    "lead_id": {
+      "type": "string",
+      "description": "ID do lead"
+    },
+    "lead_nome": {
+      "type": "string",
+      "description": "Nome do lead"
+    },
+    "produto_id": {
+      "type": "string",
+      "description": "ID do produto relacionado"
+    },
+    "produto_nome": {
+      "type": "string",
+      "description": "Nome do produto"
+    },
+    "usuario_email": {
+      "type": "string",
+      "description": "Email do SDR/Closer que preencheu"
+    },
+    "tipo_formulario": {
+      "type": "string",
+      "enum": [
+        "situacao",
+        "problema",
+        "implicacao",
+        "necessidade"
+      ],
+      "description": "Tipo do formul\u00e1rio SPIN"
+    },
+    "respostas": {
+      "type": "array",
+      "description": "Respostas do cliente",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pergunta": {
+            "type": "string"
+          },
+          "resposta": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "origem": {
+      "type": "string",
+      "enum": [
+        "ligacao",
+        "whatsapp",
+        "reuniao"
+      ],
+      "description": "Origem das respostas"
+    },
+    "observacoes": {
+      "type": "string",
+      "description": "Observa\u00e7\u00f5es adicionais"
+    }
+  },
+  "required": [
+    "lead_id",
+    "produto_id",
+    "tipo_formulario"
+  ]
+}

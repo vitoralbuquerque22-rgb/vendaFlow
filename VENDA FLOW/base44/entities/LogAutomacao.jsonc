@@ -1,0 +1,47 @@
+{
+  "name": "LogAutomacao",
+  "type": "object",
+  "properties": {
+    "automacao_regra_id": {
+      "type": "string",
+      "description": "ID da regra de automa\u00e7\u00e3o"
+    },
+    "automacao_nome": {
+      "type": "string",
+      "description": "Nome da automa\u00e7\u00e3o"
+    },
+    "lead_id": {
+      "type": "string",
+      "description": "ID do lead relacionado"
+    },
+    "lead_nome": {
+      "type": "string",
+      "description": "Nome do lead"
+    },
+    "tarefa_id": {
+      "type": "string",
+      "description": "ID da tarefa relacionada"
+    },
+    "acao_executada": {
+      "type": "string",
+      "description": "Descri\u00e7\u00e3o da a\u00e7\u00e3o executada"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "sucesso",
+        "erro"
+      ],
+      "description": "Status da execu\u00e7\u00e3o"
+    },
+    "detalhes": {
+      "type": "string",
+      "description": "Detalhes da execu\u00e7\u00e3o"
+    }
+  },
+  "required": [
+    "automacao_nome",
+    "acao_executada",
+    "status"
+  ]
+}

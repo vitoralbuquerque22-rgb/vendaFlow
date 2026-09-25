@@ -1,0 +1,137 @@
+{
+  "name": "Produto",
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa (tenant)"
+    },
+    "nome": {
+      "type": "string",
+      "description": "Nome do produto"
+    },
+    "descricao": {
+      "type": "string",
+      "description": "Descri\u00e7\u00e3o do produto"
+    },
+    "categoria": {
+      "type": "string",
+      "description": "Categoria do produto"
+    },
+    "ativo": {
+      "type": "boolean",
+      "default": true,
+      "description": "Status do produto (ativo/inativo)"
+    },
+    "valor": {
+      "type": "number",
+      "description": "Valor do produto"
+    },
+    "icp": {
+      "type": "string",
+      "description": "Perfil do Cliente Ideal (ICP)"
+    },
+    "anti_perfil": {
+      "type": "string",
+      "description": "Para quem o produto N\u00c3O \u00e9"
+    },
+    "imagens": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "URLs das imagens do produto"
+    },
+    "manual": {
+      "type": "object",
+      "description": "Manual comercial completo gerado por IA (SPIN Selling)",
+      "properties": {
+        "gerado": {
+          "type": "boolean",
+          "default": false
+        },
+        "data_geracao": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "conteudo": {
+          "type": "string",
+          "description": "Conte\u00fado completo em markdown"
+        },
+        "perguntas_spin": {
+          "type": "object",
+          "description": "Perguntas SPIN para vendas",
+          "properties": {
+            "situacao": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "problema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "implicacao": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "necessidade": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "quiz_avaliacao": {
+          "type": "array",
+          "description": "Quiz de avalia\u00e7\u00e3o do manual (10 perguntas)",
+          "items": {
+            "type": "object",
+            "properties": {
+              "pergunta": {
+                "type": "string"
+              },
+              "opcoes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "resposta_correta": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }
+    },
+    "pdf_apresentacao": {
+      "type": "object",
+      "description": "PDF de apresenta\u00e7\u00e3o para o cliente",
+      "properties": {
+        "gerado": {
+          "type": "boolean",
+          "default": false
+        },
+        "url": {
+          "type": "string"
+        },
+        "data_geracao": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    }
+  },
+  "required": [
+    "empresaId",
+    "nome",
+    "categoria"
+  ]
+}

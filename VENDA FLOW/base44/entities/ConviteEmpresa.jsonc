@@ -1,0 +1,54 @@
+{
+  "name": "ConviteEmpresa",
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa"
+    },
+    "email": {
+      "type": "string",
+      "description": "Email do convidado"
+    },
+    "papel": {
+      "type": "string",
+      "enum": [
+        "admin",
+        "gestor",
+        "sdr",
+        "closer"
+      ],
+      "default": "sdr",
+      "description": "Papel a ser atribu\u00eddo"
+    },
+    "codigo": {
+      "type": "string",
+      "description": "C\u00f3digo \u00fanico do convite"
+    },
+    "expiraEm": {
+      "type": "string",
+      "format": "date",
+      "description": "Data de expira\u00e7\u00e3o do convite"
+    },
+    "usadoEm": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Quando o convite foi aceito"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pendente",
+        "aceito",
+        "expirado"
+      ],
+      "default": "pendente"
+    }
+  },
+  "required": [
+    "empresaId",
+    "email",
+    "papel",
+    "codigo"
+  ]
+}

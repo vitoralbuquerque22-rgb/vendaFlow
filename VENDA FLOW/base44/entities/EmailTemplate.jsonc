@@ -1,0 +1,42 @@
+{
+  "name": "EmailTemplate",
+  "type": "object",
+  "properties": {
+    "nome": {
+      "type": "string",
+      "description": "Nome do template"
+    },
+    "assunto": {
+      "type": "string",
+      "description": "Assunto do e-mail"
+    },
+    "corpo": {
+      "type": "string",
+      "description": "Corpo do e-mail (pode usar {nome} para personalizar)"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "follow_up",
+        "apresentacao",
+        "lembrete",
+        "agradecimento"
+      ],
+      "default": "follow_up",
+      "description": "Tipo de template"
+    },
+    "usuario_email": {
+      "type": "string",
+      "description": "Email do usu\u00e1rio que criou"
+    },
+    "ativo": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "required": [
+    "nome",
+    "assunto",
+    "corpo"
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "name": "SpinResposta",
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa (tenant)"
+    },
+    "lead_id": {
+      "type": "string",
+      "description": "ID do lead"
+    },
+    "call_session_id": {
+      "type": "string",
+      "description": "ID da sess\u00e3o de liga\u00e7\u00e3o (LigacaoRastreada)"
+    },
+    "sdr_email": {
+      "type": "string",
+      "description": "Email do SDR que preencheu"
+    },
+    "situacao": {
+      "type": "string",
+      "description": "Resposta da pergunta de Situa\u00e7\u00e3o (SPIN)"
+    },
+    "problema": {
+      "type": "string",
+      "description": "Resposta da pergunta de Problema (SPIN)"
+    },
+    "implicacao": {
+      "type": "string",
+      "description": "Resposta da pergunta de Implica\u00e7\u00e3o (SPIN)"
+    },
+    "necessidade": {
+      "type": "string",
+      "description": "Resposta da pergunta de Necessidade (SPIN)"
+    },
+    "proximo_passo": {
+      "type": "string",
+      "description": "Pr\u00f3ximo passo acordado com o lead"
+    },
+    "produto_discutido": {
+      "type": "string",
+      "description": "Produto discutido durante a liga\u00e7\u00e3o"
+    },
+    "data_ligacao": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Data/hora da liga\u00e7\u00e3o"
+    }
+  },
+  "required": [
+    "empresaId",
+    "lead_id",
+    "call_session_id",
+    "sdr_email"
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string"
+    },
+    "lead_id": {
+      "type": "string",
+      "description": "Opcional \u2014 campanhas autom\u00e1ticas podem n\u00e3o ter lead identificado no momento do atendimento"
+    },
+    "lead_nome": {
+      "type": "string"
+    },
+    "lead_telefone": {
+      "type": "string"
+    },
+    "sdr_email": {
+      "type": "string"
+    },
+    "campanha_id_3cplus": {
+      "type": "string"
+    },
+    "chamada_id_3cplus": {
+      "type": "string"
+    },
+    "telephony_id_3cplus": {
+      "type": "string",
+      "description": "ID da chamada/telefonia do 3C Plus para hangup"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "iniciando",
+        "ringing",
+        "answered",
+        "finished",
+        "failed",
+        "timeout",
+        "abandoned"
+      ],
+      "default": "iniciando"
+    },
+    "origem": {
+      "type": "string",
+      "enum": [
+        "manual",
+        "power_dialer",
+        "campanha_automatica",
+        "discador_manual"
+      ],
+      "default": "manual"
+    },
+    "session_scope": {
+      "type": "string",
+      "enum": [
+        "lead",
+        "manual"
+      ],
+      "description": "Escopo da sess\u00e3o"
+    },
+    "iniciada_em": {
+      "type": "string"
+    },
+    "atendida_em": {
+      "type": "string"
+    },
+    "finalizada_em": {
+      "type": "string"
+    },
+    "duracao_segundos": {
+      "type": "number",
+      "default": 0
+    },
+    "spin_preenchido": {
+      "type": "boolean",
+      "default": false
+    },
+    "spin_respostas": {
+      "type": "object",
+      "properties": {
+        "situacao": {
+          "type": "string"
+        },
+        "problema": {
+          "type": "string"
+        },
+        "implicacao": {
+          "type": "string"
+        },
+        "necessidade": {
+          "type": "string"
+        },
+        "proximo_passo": {
+          "type": "string"
+        }
+      }
+    },
+    "gravacao_url": {
+      "type": "string"
+    },
+    "gravacao_processada": {
+      "type": "boolean",
+      "default": false
+    },
+    "tentativas_processamento": {
+      "type": "number",
+      "default": 0,
+      "description": "Contador de tentativas de processamento da grava\u00e7\u00e3o. M\u00e1ximo 3."
+    },
+    "transcricao": {
+      "type": "string"
+    },
+    "analise_ia": {
+      "type": "object",
+      "properties": {
+        "resumo": {
+          "type": "string"
+        },
+        "sentimento": {
+          "type": "string"
+        },
+        "lead_engajado": {
+          "type": "boolean"
+        },
+        "objecoes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "pontos_positivos": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "pontos_melhoria": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "proximos_passos": {
+          "type": "string"
+        },
+        "score_qualificacao": {
+          "type": "number"
+        },
+        "perfil_comprador": {
+          "type": "string"
+        },
+        "palavras_chave": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "erro_mensagem": {
+      "type": "string"
+    },
+    "atividade_id": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "empresaId",
+    "lead_telefone",
+    "sdr_email"
+  ],
+  "name": "CallSession"
+}

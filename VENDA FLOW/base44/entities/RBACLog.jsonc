@@ -1,0 +1,46 @@
+{
+  "name": "RBACLog",
+  "type": "object",
+  "properties": {
+    "action_type": {
+      "type": "string",
+      "enum": [
+        "profile_created",
+        "profile_updated",
+        "profile_deleted",
+        "permission_granted",
+        "permission_revoked",
+        "role_changed",
+        "access_denied",
+        "request_approved",
+        "request_rejected"
+      ],
+      "description": "Tipo de a\u00e7\u00e3o"
+    },
+    "user_email": {
+      "type": "string",
+      "description": "Email do usu\u00e1rio afetado"
+    },
+    "performed_by": {
+      "type": "string",
+      "description": "Email de quem executou a a\u00e7\u00e3o"
+    },
+    "details": {
+      "type": "object",
+      "description": "Detalhes da a\u00e7\u00e3o",
+      "additionalProperties": true
+    },
+    "ip_address": {
+      "type": "string",
+      "description": "Endere\u00e7o IP da a\u00e7\u00e3o"
+    },
+    "page": {
+      "type": "string",
+      "description": "P\u00e1gina relacionada"
+    }
+  },
+  "required": [
+    "action_type",
+    "performed_by"
+  ]
+}

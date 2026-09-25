@@ -1,0 +1,31 @@
+{
+  "name": "EmpresaVendedora",
+  "type": "object",
+  "properties": {
+    "nome": {
+      "type": "string",
+      "description": "Nome da empresa/produto vendido (ex: VORP EDUCA\u00c7\u00c3O, VORP SCALE, Matrix, JobMac)"
+    },
+    "descricao": {
+      "type": "string",
+      "description": "Descri\u00e7\u00e3o da empresa/produto"
+    },
+    "cor": {
+      "type": "string",
+      "description": "Cor para identifica\u00e7\u00e3o visual (hex)",
+      "default": "#ff6b35"
+    },
+    "ativa": {
+      "type": "boolean",
+      "default": true,
+      "description": "Empresa ativa"
+    },
+    "meta_mensal": {
+      "type": "number",
+      "description": "Meta de vendas mensal em R$"
+    }
+  },
+  "required": [
+    "nome"
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "name": "LandingPage",
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa (tenant)"
+    },
+    "titulo": {
+      "type": "string",
+      "description": "T\u00edtulo da landing page"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL amig\u00e1vel (ex: diagnostico-marketing)"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "ebook",
+        "diagnostico",
+        "webinar",
+        "consultoria"
+      ],
+      "description": "Tipo de landing page"
+    },
+    "descricao": {
+      "type": "string",
+      "description": "Descri\u00e7\u00e3o/pitch da oferta"
+    },
+    "imagem_destaque": {
+      "type": "string",
+      "description": "URL da imagem de destaque"
+    },
+    "cor_tema": {
+      "type": "string",
+      "default": "#3b82f6",
+      "description": "Cor principal do tema"
+    },
+    "formulario": {
+      "type": "object",
+      "description": "Configura\u00e7\u00e3o do formul\u00e1rio",
+      "properties": {
+        "campos_basicos": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "nome",
+              "email",
+              "telefone",
+              "empresa",
+              "cargo"
+            ]
+          },
+          "description": "Campos b\u00e1sicos obrigat\u00f3rios"
+        },
+        "perguntas_diagnostico": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "pergunta": {
+                "type": "string"
+              },
+              "tipo": {
+                "type": "string",
+                "enum": [
+                  "multipla_escolha",
+                  "texto",
+                  "escala"
+                ]
+              },
+              "opcoes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "peso_score": {
+                "type": "number",
+                "description": "Peso para pontua\u00e7\u00e3o (0-10)"
+              }
+            }
+          }
+        }
+      }
+    },
+    "material_entrega": {
+      "type": "object",
+      "description": "Material a ser entregue",
+      "properties": {
+        "tipo": {
+          "type": "string",
+          "enum": [
+            "arquivo",
+            "link",
+            "email"
+          ]
+        },
+        "arquivo_url": {
+          "type": "string"
+        },
+        "link_externo": {
+          "type": "string"
+        },
+        "mensagem_agradecimento": {
+          "type": "string"
+        }
+      }
+    },
+    "integracao_email": {
+      "type": "object",
+      "description": "Integra\u00e7\u00e3o com email marketing",
+      "properties": {
+        "enviar_email_automatico": {
+          "type": "boolean",
+          "default": false
+        },
+        "template_id": {
+          "type": "string"
+        },
+        "sequencia_id": {
+          "type": "string"
+        }
+      }
+    },
+    "ativa": {
+      "type": "boolean",
+      "default": true,
+      "description": "Landing page ativa"
+    },
+    "total_visitas": {
+      "type": "number",
+      "default": 0,
+      "description": "Total de visitas"
+    },
+    "total_conversoes": {
+      "type": "number",
+      "default": 0,
+      "description": "Total de convers\u00f5es"
+    },
+    "taxa_conversao": {
+      "type": "number",
+      "default": 0,
+      "description": "Taxa de convers\u00e3o %"
+    }
+  },
+  "required": [
+    "empresaId",
+    "titulo",
+    "slug",
+    "tipo"
+  ]
+}

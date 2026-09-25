@@ -1,0 +1,40 @@
+{
+  "name": "Equipe",
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa (tenant)"
+    },
+    "nome": {
+      "type": "string",
+      "description": "Nome da equipe"
+    },
+    "gestor_email": {
+      "type": "string",
+      "description": "Email do gestor da equipe"
+    },
+    "membros": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Lista de emails dos membros"
+    },
+    "ativa": {
+      "type": "boolean",
+      "default": true
+    },
+    "campanhas_permitidas": {
+      "type": "array",
+      "description": "IDs das campanhas 3C Plus que esta equipe pode acessar. Vazio = todas as habilitadas.",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "empresaId",
+    "nome"
+  ]
+}

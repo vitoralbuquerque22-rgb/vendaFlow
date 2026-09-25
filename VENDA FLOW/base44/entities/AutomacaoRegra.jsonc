@@ -1,0 +1,117 @@
+{
+  "name": "AutomacaoRegra",
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa (tenant)"
+    },
+    "nome": {
+      "type": "string",
+      "description": "Nome da automa\u00e7\u00e3o"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "criar_tarefa",
+        "enviar_lembrete",
+        "escalar_lead",
+        "notificar_reuniao",
+        "atribuir_lead"
+      ],
+      "description": "Tipo de automa\u00e7\u00e3o"
+    },
+    "trigger": {
+      "type": "string",
+      "enum": [
+        "mudanca_status_lead",
+        "tarefa_atrasada",
+        "sem_atividade",
+        "reuniao_proxima",
+        "novo_lead"
+      ],
+      "description": "Evento que dispara a automa\u00e7\u00e3o"
+    },
+    "condicoes": {
+      "type": "object",
+      "description": "Condi\u00e7\u00f5es para executar a automa\u00e7\u00e3o",
+      "properties": {
+        "status_lead": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "origem_lead": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "dias_sem_atividade": {
+          "type": "number"
+        },
+        "horas_antes_reuniao": {
+          "type": "number"
+        },
+        "dias_atraso": {
+          "type": "number"
+        }
+      }
+    },
+    "acoes": {
+      "type": "object",
+      "description": "A\u00e7\u00f5es a executar",
+      "properties": {
+        "criar_tarefa": {
+          "type": "object",
+          "properties": {
+            "tipo_tarefa": {
+              "type": "string"
+            },
+            "periodo": {
+              "type": "string"
+            },
+            "dias_futuro": {
+              "type": "number"
+            }
+          }
+        },
+        "enviar_email": {
+          "type": "boolean"
+        },
+        "notificar_app": {
+          "type": "boolean"
+        },
+        "destinatarios": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "mensagem": {
+          "type": "string"
+        },
+        "escalar_para": {
+          "type": "string"
+        }
+      }
+    },
+    "ativa": {
+      "type": "boolean",
+      "default": true,
+      "description": "Automa\u00e7\u00e3o ativa"
+    },
+    "prioridade": {
+      "type": "number",
+      "default": 1,
+      "description": "Ordem de execu\u00e7\u00e3o (menor = primeiro)"
+    }
+  },
+  "required": [
+    "empresaId",
+    "nome",
+    "tipo",
+    "trigger"
+  ]
+}

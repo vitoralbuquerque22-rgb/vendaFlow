@@ -1,0 +1,75 @@
+{
+  "name": "LogImpersonacao",
+  "type": "object",
+  "properties": {
+    "super_admin_email": {
+      "type": "string",
+      "description": "Email do super_admin que iniciou a impersona\u00e7\u00e3o"
+    },
+    "usuario_alvo_email": {
+      "type": "string",
+      "description": "Email do usu\u00e1rio sendo impersonado"
+    },
+    "usuario_alvo_nome": {
+      "type": "string",
+      "description": "Nome do usu\u00e1rio sendo impersonado"
+    },
+    "usuario_alvo_role": {
+      "type": "string",
+      "description": "Role do usu\u00e1rio sendo impersonado"
+    },
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa do usu\u00e1rio alvo"
+    },
+    "empresa_nome": {
+      "type": "string",
+      "description": "Nome da empresa do usu\u00e1rio alvo"
+    },
+    "iniciado_em": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp de in\u00edcio da sess\u00e3o de impersona\u00e7\u00e3o"
+    },
+    "encerrado_em": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp de encerramento da sess\u00e3o"
+    },
+    "acoes_realizadas": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Lista de a\u00e7\u00f5es realizadas durante a impersona\u00e7\u00e3o"
+    }
+  },
+  "required": [
+    "super_admin_email",
+    "usuario_alvo_email",
+    "empresaId",
+    "iniciado_em"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": {
+        "role": "super_admin"
+      }
+    },
+    "create": {
+      "user_condition": {
+        "role": "super_admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "super_admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "super_admin"
+      }
+    }
+  }
+}

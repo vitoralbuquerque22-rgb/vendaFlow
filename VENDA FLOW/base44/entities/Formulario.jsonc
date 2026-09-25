@@ -1,0 +1,77 @@
+{
+  "name": "Formulario",
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa (tenant)"
+    },
+    "nome": {
+      "type": "string",
+      "description": "Nome do formul\u00e1rio"
+    },
+    "descricao": {
+      "type": "string",
+      "description": "Descri\u00e7\u00e3o do formul\u00e1rio"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "sdr",
+        "closer"
+      ],
+      "description": "Tipo/finalidade do formul\u00e1rio"
+    },
+    "produtos_vinculados": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "IDs dos produtos vinculados ao formul\u00e1rio"
+    },
+    "perguntas": {
+      "type": "array",
+      "description": "Lista de perguntas do formul\u00e1rio",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pergunta": {
+            "type": "string"
+          },
+          "tipo_resposta": {
+            "type": "string",
+            "enum": [
+              "texto_curto",
+              "texto_longo",
+              "multipla_escolha",
+              "checkbox",
+              "numero",
+              "data"
+            ]
+          },
+          "opcoes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Op\u00e7\u00f5es para m\u00faltipla escolha ou checkbox"
+          },
+          "obrigatoria": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      }
+    },
+    "ativo": {
+      "type": "boolean",
+      "default": true,
+      "description": "Formul\u00e1rio ativo"
+    }
+  },
+  "required": [
+    "empresaId",
+    "nome",
+    "tipo"
+  ]
+}

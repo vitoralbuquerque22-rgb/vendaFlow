@@ -1,0 +1,153 @@
+{
+  "name": "LigacaoRastreada",
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa (tenant)"
+    },
+    "lead_id": {
+      "type": "string",
+      "description": "ID do lead"
+    },
+    "lead_nome": {
+      "type": "string",
+      "description": "Nome do lead"
+    },
+    "lead_telefone": {
+      "type": "string",
+      "description": "Telefone do lead"
+    },
+    "sdr_email": {
+      "type": "string",
+      "description": "Email do SDR que realizou a liga\u00e7\u00e3o"
+    },
+    "campanha_id_3cplus": {
+      "type": "string",
+      "description": "ID da campanha no 3C Plus"
+    },
+    "chamada_id_3cplus": {
+      "type": "string",
+      "description": "ID da chamada no 3C Plus"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "iniciando",
+        "ringing",
+        "answered",
+        "finished",
+        "failed",
+        "timeout"
+      ],
+      "default": "iniciando",
+      "description": "Status atual da liga\u00e7\u00e3o"
+    },
+    "origem": {
+      "type": "string",
+      "enum": [
+        "manual",
+        "power_dialer"
+      ],
+      "default": "manual",
+      "description": "Origem da liga\u00e7\u00e3o"
+    },
+    "iniciada_em": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Data/hora de in\u00edcio da liga\u00e7\u00e3o"
+    },
+    "atendida_em": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Data/hora em que foi atendida"
+    },
+    "finalizada_em": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Data/hora de encerramento"
+    },
+    "duracao_segundos": {
+      "type": "number",
+      "default": 0,
+      "description": "Dura\u00e7\u00e3o total da liga\u00e7\u00e3o em segundos"
+    },
+    "spin_preenchido": {
+      "type": "boolean",
+      "default": false,
+      "description": "Indica se o SPIN foi preenchido durante a liga\u00e7\u00e3o"
+    },
+    "spin_respostas": {
+      "type": "object",
+      "description": "Respostas do SPIN Selling coletadas na liga\u00e7\u00e3o",
+      "properties": {
+        "situacao": {
+          "type": "string"
+        },
+        "problema": {
+          "type": "string"
+        },
+        "implicacao": {
+          "type": "string"
+        },
+        "necessidade": {
+          "type": "string"
+        },
+        "proximo_passo": {
+          "type": "string"
+        }
+      }
+    },
+    "gravacao_url": {
+      "type": "string",
+      "description": "URL da grava\u00e7\u00e3o da liga\u00e7\u00e3o"
+    },
+    "gravacao_processada": {
+      "type": "boolean",
+      "default": false,
+      "description": "Indica se a grava\u00e7\u00e3o foi processada pela IA"
+    },
+    "transcricao": {
+      "type": "string",
+      "description": "Transcri\u00e7\u00e3o completa da liga\u00e7\u00e3o"
+    },
+    "analise_ia": {
+      "type": "object",
+      "description": "An\u00e1lise gerada pela IA sobre a liga\u00e7\u00e3o",
+      "properties": {
+        "resumo": {
+          "type": "string"
+        },
+        "sentimento": {
+          "type": "string"
+        },
+        "objecoes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "proximos_passos": {
+          "type": "string"
+        },
+        "score_qualificacao": {
+          "type": "number"
+        }
+      }
+    },
+    "erro_mensagem": {
+      "type": "string",
+      "description": "Mensagem de erro caso a liga\u00e7\u00e3o falhe"
+    },
+    "atividade_id": {
+      "type": "string",
+      "description": "ID da atividade gerada no CRM ap\u00f3s a liga\u00e7\u00e3o"
+    }
+  },
+  "required": [
+    "empresaId",
+    "lead_id",
+    "lead_telefone",
+    "sdr_email"
+  ]
+}

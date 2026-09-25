@@ -1,0 +1,51 @@
+{
+  "name": "ComentarioGravacao",
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa (tenant)"
+    },
+    "gravacao_id": {
+      "type": "string",
+      "description": "FK \u2192 GravacaoLigacao"
+    },
+    "autor_email": {
+      "type": "string",
+      "description": "Email do autor"
+    },
+    "autor_nome": {
+      "type": "string",
+      "description": "Nome desnormalizado"
+    },
+    "comentario": {
+      "type": "string",
+      "description": "Texto do coment\u00e1rio"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "comentario",
+        "feedback_rapido",
+        "marcador_tempo"
+      ],
+      "description": "Tipo do coment\u00e1rio",
+      "default": "comentario"
+    },
+    "tempo_gravacao": {
+      "type": "number",
+      "description": "Segundos no \u00e1udio onde o coment\u00e1rio est\u00e1 ancorado"
+    },
+    "editado": {
+      "type": "boolean",
+      "description": "Se o coment\u00e1rio foi editado ap\u00f3s cria\u00e7\u00e3o",
+      "default": false
+    }
+  },
+  "required": [
+    "empresaId",
+    "gravacao_id",
+    "autor_email",
+    "comentario"
+  ]
+}

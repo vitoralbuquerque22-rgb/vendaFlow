@@ -1,0 +1,88 @@
+{
+  "name": "Integracao",
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa (tenant)"
+    },
+    "nome": {
+      "type": "string",
+      "description": "Nome da integra\u00e7\u00e3o"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "telefonia",
+        "meta_ads",
+        "google_ads",
+        "typeform",
+        "wordpress",
+        "hotmart",
+        "asaas",
+        "kiwify",
+        "google_calendar",
+        "google_meet"
+      ],
+      "description": "Tipo de integra\u00e7\u00e3o"
+    },
+    "ativa": {
+      "type": "boolean",
+      "default": false
+    },
+    "configuracao": {
+      "type": "object",
+      "description": "Configura\u00e7\u00f5es espec\u00edficas \u2014 para 3C Plus: {fornecedor, dominio, token_gestor, token_agente, campanha_id_padrao}",
+      "additionalProperties": true
+    },
+    "mapeamento_campos": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "webhook_url": {
+      "type": "string"
+    },
+    "ultima_sincronizacao": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "status_conexao": {
+      "type": "string",
+      "enum": [
+        "ativa",
+        "inativa",
+        "erro"
+      ],
+      "default": "inativa"
+    },
+    "mensagem_erro": {
+      "type": "string"
+    },
+    "dados_cache": {
+      "type": "object",
+      "description": "Cache de dados ao vivo \u2014 agentes_ao_vivo, m\u00e9tricas",
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "empresaId",
+    "nome",
+    "tipo"
+  ],
+  "rls": {
+    "create": {
+      "data.empresaId": "{{user.data.empresaAtualId}}"
+    },
+    "read": {
+      "data.empresaId": "{{user.data.empresaAtualId}}"
+    },
+    "update": {
+      "data.empresaId": "{{user.data.empresaAtualId}}"
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

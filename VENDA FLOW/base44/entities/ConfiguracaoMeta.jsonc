@@ -1,0 +1,72 @@
+{
+  "name": "ConfiguracaoMeta",
+  "type": "object",
+  "properties": {
+    "meta_leads": {
+      "type": "number",
+      "default": 100,
+      "description": "Meta mensal de leads"
+    },
+    "meta_mql": {
+      "type": "number",
+      "default": 80,
+      "description": "Meta mensal de MQL (Marketing Qualified Leads)"
+    },
+    "meta_conexoes": {
+      "type": "number",
+      "default": 60,
+      "description": "Meta mensal de conex\u00f5es"
+    },
+    "meta_rm": {
+      "type": "number",
+      "default": 30,
+      "description": "Meta mensal de reuni\u00f5es marcadas"
+    },
+    "meta_rr": {
+      "type": "number",
+      "default": 25,
+      "description": "Meta mensal de reuni\u00f5es realizadas"
+    },
+    "meta_vendas": {
+      "type": "number",
+      "default": 15,
+      "description": "Meta mensal de vendas"
+    },
+    "meta_investimento_meta_ads": {
+      "type": "number",
+      "default": 0,
+      "description": "Meta de investimento em Meta Ads (R$)"
+    },
+    "meta_investimento_google_ads": {
+      "type": "number",
+      "default": 0,
+      "description": "Meta de investimento em Google Ads (R$)"
+    },
+    "meta_investimento_total": {
+      "type": "number",
+      "default": 0,
+      "description": "Meta de investimento total (R$)"
+    },
+    "meta_faturamento_total": {
+      "type": "number",
+      "default": 500000,
+      "description": "Meta de faturamento total mensal (R$)"
+    },
+    "meta_ticket_medio": {
+      "type": "number",
+      "default": 25000,
+      "description": "Meta de ticket m\u00e9dio (R$)"
+    },
+    "meta_quantidade_vendas": {
+      "type": "number",
+      "default": 20,
+      "description": "Meta de quantidade de vendas no m\u00eas"
+    },
+    "meta_contratos_assinar": {
+      "type": "number",
+      "default": 30,
+      "description": "Meta de contratos a assinar no m\u00eas"
+    }
+  },
+  "required": []
+}

@@ -1,0 +1,62 @@
+{
+  "name": "VinculoEmpresa",
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa"
+    },
+    "userEmail": {
+      "type": "string",
+      "description": "Email do usu\u00e1rio"
+    },
+    "userName": {
+      "type": "string",
+      "description": "Nome do usu\u00e1rio"
+    },
+    "papel": {
+      "type": "string",
+      "enum": [
+        "admin",
+        "gestor",
+        "sdr",
+        "closer"
+      ],
+      "default": "sdr",
+      "description": "Papel do usu\u00e1rio na empresa"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ativo",
+        "inativo",
+        "pendente"
+      ],
+      "default": "ativo",
+      "description": "Status do v\u00ednculo"
+    },
+    "ultimoAcesso": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Data e hora do \u00faltimo acesso do usu\u00e1rio"
+    }
+  },
+  "required": [
+    "empresaId",
+    "userEmail",
+    "papel"
+  ],
+  "rls": {
+    "read": {
+      "data.empresaId": "{{user.data.empresaAtualId}}"
+    },
+    "update": {
+      "data.empresaId": "{{user.data.empresaAtualId}}"
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

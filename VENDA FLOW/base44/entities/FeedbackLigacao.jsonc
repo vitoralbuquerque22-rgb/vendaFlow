@@ -1,0 +1,86 @@
+{
+  "name": "FeedbackLigacao",
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa (tenant)"
+    },
+    "gravacao_id": {
+      "type": "string",
+      "description": "FK \u2192 GravacaoLigacao"
+    },
+    "avaliador_email": {
+      "type": "string",
+      "description": "Email do avaliador (admin/gestor)"
+    },
+    "avaliador_nome": {
+      "type": "string",
+      "description": "Nome desnormalizado"
+    },
+    "sdr_email": {
+      "type": "string",
+      "description": "Email do SDR avaliado \u2014 desnormalizado para query direta"
+    },
+    "pontuacao": {
+      "type": "number",
+      "description": "Nota de 1 a 10"
+    },
+    "categorias": {
+      "type": "array",
+      "description": "Categorias avaliadas: abordagem, objecao, fechamento, comunicacao, rapport",
+      "items": {
+        "type": "string"
+      }
+    },
+    "pontos_fortes": {
+      "type": "array",
+      "description": "Pontos positivos identificados",
+      "items": {
+        "type": "string"
+      }
+    },
+    "pontos_melhoria": {
+      "type": "array",
+      "description": "Pontos de melhoria identificados",
+      "items": {
+        "type": "string"
+      }
+    },
+    "comentario": {
+      "type": "string",
+      "description": "Coment\u00e1rio livre do avaliador"
+    },
+    "visualizado": {
+      "type": "boolean",
+      "description": "SDR confirmou que viu o feedback",
+      "default": false
+    },
+    "contestado": {
+      "type": "boolean",
+      "description": "SDR abriu contesta\u00e7\u00e3o",
+      "default": false
+    },
+    "contestacao_id": {
+      "type": "string",
+      "description": "FK \u2192 FeedbackContestacao ativa"
+    },
+    "contestacoes_count": {
+      "type": "number",
+      "description": "Total de contesta\u00e7\u00f5es \u2014 enforcement limite m\u00e1x 2",
+      "default": 0
+    },
+    "data_feedback": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Data do registro do feedback"
+    }
+  },
+  "required": [
+    "empresaId",
+    "gravacao_id",
+    "avaliador_email",
+    "sdr_email",
+    "pontuacao"
+  ]
+}

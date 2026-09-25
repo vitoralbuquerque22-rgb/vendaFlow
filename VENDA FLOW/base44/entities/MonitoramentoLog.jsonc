@@ -1,0 +1,63 @@
+{
+  "name": "MonitoramentoLog",
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa"
+    },
+    "gestor_email": {
+      "type": "string",
+      "description": "Email do gestor que executou a a\u00e7\u00e3o"
+    },
+    "agente_id": {
+      "type": "number",
+      "description": "ID do agente no 3C Plus"
+    },
+    "agente_nome": {
+      "type": "string",
+      "description": "Nome do agente"
+    },
+    "acao": {
+      "type": "string",
+      "enum": [
+        "pausar",
+        "retomar",
+        "deslogar",
+        "spy",
+        "whisper",
+        "stop_spy"
+      ],
+      "description": "A\u00e7\u00e3o executada"
+    },
+    "campanha_nome": {
+      "type": "string",
+      "description": "Nome da campanha"
+    },
+    "work_break_nome": {
+      "type": "string",
+      "description": "Nome do intervalo (se pausar)"
+    },
+    "sucesso": {
+      "type": "boolean",
+      "description": "Se a a\u00e7\u00e3o foi bem-sucedida"
+    },
+    "erro_mensagem": {
+      "type": "string",
+      "description": "Mensagem de erro (se falhar)"
+    },
+    "executado_em": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Data/hora da execu\u00e7\u00e3o"
+    }
+  },
+  "required": [
+    "empresaId",
+    "gestor_email",
+    "agente_id",
+    "acao",
+    "sucesso",
+    "executado_em"
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "name": "ProgramacaoDistribuicao",
+  "type": "object",
+  "properties": {
+    "nome": {
+      "type": "string",
+      "description": "Nome da programa\u00e7\u00e3o"
+    },
+    "filtro_leads": {
+      "type": "object",
+      "description": "Filtros para selecionar leads (status, origem, campanha, data_criacao, etc)",
+      "additionalProperties": true
+    },
+    "data_inicio": {
+      "type": "string",
+      "format": "date",
+      "description": "Data de in\u00edcio da distribui\u00e7\u00e3o"
+    },
+    "data_fim": {
+      "type": "string",
+      "format": "date",
+      "description": "Data de fim da distribui\u00e7\u00e3o"
+    },
+    "leads_por_dia_por_sdr": {
+      "type": "number",
+      "default": 10,
+      "description": "Quantidade de leads por dia para cada SDR"
+    },
+    "sdrs_atribuidos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Lista de emails dos SDRs"
+    },
+    "closer_padrao": {
+      "type": "string",
+      "description": "Email do closer padr\u00e3o"
+    },
+    "cadencia_id": {
+      "type": "string",
+      "description": "ID da cad\u00eancia a iniciar automaticamente"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "aguardando",
+        "em_andamento",
+        "concluida",
+        "cancelada"
+      ],
+      "default": "aguardando",
+      "description": "Status da programa\u00e7\u00e3o"
+    },
+    "total_leads_processados": {
+      "type": "number",
+      "default": 0,
+      "description": "Total de leads j\u00e1 distribu\u00eddos"
+    },
+    "total_leads_disponiveis": {
+      "type": "number",
+      "default": 0,
+      "description": "Total de leads dispon\u00edveis para distribui\u00e7\u00e3o"
+    },
+    "ultima_execucao": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Data/hora da \u00faltima execu\u00e7\u00e3o"
+    },
+    "ativa": {
+      "type": "boolean",
+      "default": true,
+      "description": "Programa\u00e7\u00e3o ativa"
+    }
+  },
+  "required": [
+    "nome",
+    "data_inicio",
+    "data_fim",
+    "leads_por_dia_por_sdr",
+    "sdrs_atribuidos"
+  ]
+}

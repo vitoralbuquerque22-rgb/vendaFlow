@@ -1,0 +1,82 @@
+{
+  "name": "CommercialInsights",
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa (tenant)"
+    },
+    "dia": {
+      "type": "string",
+      "format": "date",
+      "description": "Data do snapshot (YYYY-MM-DD)"
+    },
+    "leads_esquecidos": {
+      "type": "array",
+      "description": "IDs de leads sem atividade > 7 dias",
+      "items": {
+        "type": "string"
+      }
+    },
+    "leads_esquecidos_count": {
+      "type": "number",
+      "default": 0
+    },
+    "followups_atrasados": {
+      "type": "array",
+      "description": "IDs de tarefas pendentes atrasadas",
+      "items": {
+        "type": "string"
+      }
+    },
+    "followups_atrasados_count": {
+      "type": "number",
+      "default": 0
+    },
+    "oportunidades_quentes": {
+      "type": "array",
+      "description": "Objetos { lead_id, score } com health score >= 60",
+      "items": {
+        "type": "object"
+      }
+    },
+    "oportunidades_quentes_count": {
+      "type": "number",
+      "default": 0
+    },
+    "gargalos": {
+      "type": "array",
+      "description": "Objetos { label, count, pct } por status do funil",
+      "items": {
+        "type": "object"
+      }
+    },
+    "sdr_destaque": {
+      "type": "array",
+      "description": "Top 3 SDRs por convers\u00f5es nos \u00faltimos 30 dias",
+      "items": {
+        "type": "object"
+      }
+    },
+    "sdr_baixa_perf": {
+      "type": "array",
+      "description": "SDRs com menor taxa de convers\u00e3o (m\u00edn. 1 atendimento)",
+      "items": {
+        "type": "object"
+      }
+    },
+    "total_leads": {
+      "type": "number",
+      "default": 0
+    },
+    "atualizado_em": {
+      "type": "string",
+      "format": "date-time",
+      "description": "\u00daltima atualiza\u00e7\u00e3o do snapshot"
+    }
+  },
+  "required": [
+    "empresaId",
+    "dia"
+  ]
+}

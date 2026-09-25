@@ -1,0 +1,129 @@
+{
+  "type": "object",
+  "properties": {
+    "user_email": {
+      "type": "string",
+      "description": "Email do usu\u00e1rio"
+    },
+    "user_name": {
+      "type": "string",
+      "description": "Nome completo do usu\u00e1rio"
+    },
+    "role": {
+      "type": "string",
+      "enum": [
+        "admin",
+        "gestor",
+        "sdr",
+        "closer"
+      ],
+      "description": "Cargo/fun\u00e7\u00e3o do usu\u00e1rio"
+    },
+    "custom_role_id": {
+      "type": "string",
+      "description": "ID da role customizada (opcional)"
+    },
+    "permissions": {
+      "type": "object",
+      "description": "Permiss\u00f5es espec\u00edficas do usu\u00e1rio",
+      "properties": {
+        "pages": {
+          "type": "object",
+          "description": "Permiss\u00f5es por p\u00e1gina",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "read": {
+                "type": "boolean"
+              },
+              "create": {
+                "type": "boolean"
+              },
+              "update": {
+                "type": "boolean"
+              },
+              "delete": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "features": {
+          "type": "object",
+          "description": "Permiss\u00f5es de features espec\u00edficas",
+          "additionalProperties": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Perfil ativo"
+    },
+    "bloqueado": {
+      "type": "boolean",
+      "default": false,
+      "description": "Usu\u00e1rio bloqueado de acessar o CRM"
+    },
+    "assigned_by": {
+      "type": "string",
+      "description": "Email de quem atribuiu o perfil"
+    },
+    "last_modified_by": {
+      "type": "string",
+      "description": "Email de quem modificou por \u00faltimo"
+    },
+    "ramal_3cplus": {
+      "type": "string",
+      "description": "Ramal do agente no 3C Plus."
+    },
+    "id_3cplus": {
+      "type": "number",
+      "description": "ID num\u00e9rico do agente no 3C Plus."
+    },
+    "token_3cplus": {
+      "type": "string",
+      "description": "API token do agente no 3C Plus."
+    },
+    "3cplus_sincronizado": {
+      "type": "boolean",
+      "default": false,
+      "description": "Se o agente j\u00e1 foi vinculado ao 3C Plus automaticamente."
+    },
+    "3cplus_sincronizado_em": {
+      "type": "string",
+      "description": "Timestamp da \u00faltima sincroniza\u00e7\u00e3o com 3C Plus."
+    },
+    "campanha_preferencial_id": {
+      "type": "string",
+      "description": "ID da campanha 3C Plus preferencial do agente \u2014 persiste entre recargas"
+    },
+    "campanha_preferencial_nome": {
+      "type": "string",
+      "description": "Nome da campanha 3C Plus preferencial do agente \u2014 exibi\u00e7\u00e3o sem chamar API"
+    },
+    "campanhas_permitidas": {
+      "type": "array",
+      "description": "IDs de campanhas 3C Plus permitidas individualmente para este SDR. Vazio = herda permiss\u00f5es da equipe.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "modo_ativo": {
+      "type": "string",
+      "enum": [
+        "supervisor",
+        "closer"
+      ],
+      "default": "supervisor",
+      "description": "Modo de opera\u00e7\u00e3o do gestor/supervisor: painel da equipe ou fila de tarefas de closer"
+    }
+  },
+  "required": [
+    "user_email",
+    "role"
+  ],
+  "name": "UserProfile"
+}

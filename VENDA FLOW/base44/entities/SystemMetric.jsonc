@@ -1,0 +1,107 @@
+{
+  "name": "SystemMetric",
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa (tenant)"
+    },
+    "dia": {
+      "type": "string",
+      "format": "date"
+    },
+    "hora": {
+      "type": "number",
+      "description": "0-23 = bucket hor\u00e1rio; -1 = agregado di\u00e1rio"
+    },
+    "granularidade": {
+      "type": "string",
+      "enum": [
+        "hourly",
+        "daily"
+      ],
+      "default": "hourly",
+      "description": "Problema 1: distingue hor\u00e1rios de agregados \u2014 cleanup nunca apaga daily"
+    },
+    "categoria": {
+      "type": "string",
+      "enum": [
+        "cockpit",
+        "ia",
+        "analytics",
+        "crm",
+        "dashboard",
+        "timeline"
+      ]
+    },
+    "operacao": {
+      "type": "string"
+    },
+    "count": {
+      "type": "number",
+      "default": 0
+    },
+    "errors": {
+      "type": "number",
+      "default": 0
+    },
+    "latencia_p50_ms": {
+      "type": "number"
+    },
+    "latencia_p95_ms": {
+      "type": "number"
+    },
+    "latencia_max_ms": {
+      "type": "number"
+    },
+    "latency_buckets": {
+      "type": "object",
+      "description": "Problema 2: histograma de lat\u00eancia \u2014 evita m\u00e9dia de percentis",
+      "properties": {
+        "b0_100": {
+          "type": "number",
+          "default": 0
+        },
+        "b100_500": {
+          "type": "number",
+          "default": 0
+        },
+        "b500_1000": {
+          "type": "number",
+          "default": 0
+        },
+        "b1000_plus": {
+          "type": "number",
+          "default": 0
+        }
+      }
+    },
+    "sla_compliance_pct": {
+      "type": "number",
+      "description": "Problema 7: % opera\u00e7\u00f5es dentro do SLA"
+    },
+    "error_budget_consumed_pct": {
+      "type": "number",
+      "description": "Problema 8: % do error budget consumido"
+    },
+    "sla_violacoes": {
+      "type": "number",
+      "default": 0
+    },
+    "uptime_pct": {
+      "type": "number"
+    },
+    "atualizado_em": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "empresaId",
+    "dia",
+    "hora",
+    "categoria",
+    "operacao",
+    "granularidade"
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "name": "Alerta",
+  "type": "object",
+  "properties": {
+    "configuracao_alerta_id": {
+      "type": "string",
+      "description": "ID da configura\u00e7\u00e3o de alerta que disparou"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "meta_atingida",
+        "meta_em_risco",
+        "anomalia",
+        "baixa_performance",
+        "alta_performance"
+      ],
+      "description": "Tipo de alerta"
+    },
+    "titulo": {
+      "type": "string",
+      "description": "T\u00edtulo do alerta"
+    },
+    "mensagem": {
+      "type": "string",
+      "description": "Mensagem detalhada do alerta"
+    },
+    "metrica": {
+      "type": "string",
+      "description": "M\u00e9trica que disparou o alerta"
+    },
+    "valor_atual": {
+      "type": "number",
+      "description": "Valor atual da m\u00e9trica"
+    },
+    "valor_esperado": {
+      "type": "number",
+      "description": "Valor esperado/threshold"
+    },
+    "destinatarios": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Emails dos destinat\u00e1rios"
+    },
+    "visualizado_por": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [],
+      "description": "Emails de quem visualizou"
+    },
+    "prioridade": {
+      "type": "string",
+      "enum": [
+        "baixa",
+        "media",
+        "alta",
+        "critica"
+      ],
+      "default": "media",
+      "description": "Prioridade do alerta"
+    },
+    "usuario_referencia": {
+      "type": "string",
+      "description": "Email do usu\u00e1rio relacionado (se aplic\u00e1vel)"
+    },
+    "equipe_referencia": {
+      "type": "string",
+      "description": "ID da equipe relacionada (se aplic\u00e1vel)"
+    },
+    "periodo_referencia": {
+      "type": "string",
+      "description": "Per\u00edodo de refer\u00eancia do alerta (ex: 2024-01)"
+    },
+    "resolvido": {
+      "type": "boolean",
+      "default": false,
+      "description": "Alerta foi resolvido/arquivado"
+    },
+    "resolvido_por": {
+      "type": "string",
+      "description": "Email de quem resolveu"
+    },
+    "resolvido_em": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Data/hora da resolu\u00e7\u00e3o"
+    }
+  },
+  "required": [
+    "tipo",
+    "titulo",
+    "mensagem",
+    "destinatarios"
+  ]
+}

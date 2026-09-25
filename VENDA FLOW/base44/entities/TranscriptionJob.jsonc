@@ -1,0 +1,146 @@
+{
+  "name": "TranscriptionJob",
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa (tenant)"
+    },
+    "gravacao_id": {
+      "type": "string",
+      "description": "FK \u2192 GravacaoLigacao"
+    },
+    "call_session_id": {
+      "type": "string",
+      "description": "FK \u2192 CallSession origem (se aplic\u00e1vel)"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "queued",
+        "processing",
+        "done",
+        "failed",
+        "timeout",
+        "stuck"
+      ],
+      "description": "Status do job na fila",
+      "default": "queued"
+    },
+    "tentativa_atual": {
+      "type": "number",
+      "description": "Tentativa corrente",
+      "default": 1
+    },
+    "max_tentativas": {
+      "type": "number",
+      "description": "M\u00e1ximo de tentativas antes de falha definitiva",
+      "default": 3
+    },
+    "audio_url_tentada": {
+      "type": "string",
+      "description": "URL do \u00e1udio usada nesta tentativa"
+    },
+    "audio_tamanho_bytes": {
+      "type": "number",
+      "description": "Tamanho do \u00e1udio \u2014 detectar corrompido"
+    },
+    "audio_duracao_segundos": {
+      "type": "number",
+      "description": "Dura\u00e7\u00e3o esperada \u2014 valida\u00e7\u00e3o"
+    },
+    "modelo_usado": {
+      "type": "string",
+      "description": "Modelo de transcri\u00e7\u00e3o (whisper-1, gpt-4o-mini-transcribe)"
+    },
+    "tokens_usados": {
+      "type": "number",
+      "description": "Total de tokens consumidos"
+    },
+    "custo_usd": {
+      "type": "number",
+      "description": "Custo USD desta execu\u00e7\u00e3o"
+    },
+    "prompt_version": {
+      "type": "string",
+      "description": "Vers\u00e3o do prompt de an\u00e1lise usado"
+    },
+    "iniciado_em": {
+      "type": "string",
+      "format": "date-time",
+      "description": "In\u00edcio do processamento"
+    },
+    "concluido_em": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Fim do processamento"
+    },
+    "duracao_processamento_ms": {
+      "type": "number",
+      "description": "Tempo total de processamento em ms"
+    },
+    "erro_codigo": {
+      "type": "string",
+      "description": "C\u00f3digo do erro: AUDIO_CORRUPT, OPENAI_TIMEOUT, OPENAI_429, NETWORK_ERROR"
+    },
+    "erro_mensagem": {
+      "type": "string",
+      "description": "Mensagem completa do erro"
+    },
+    "erro_em": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Quando o erro ocorreu"
+    },
+    "retry_scheduled_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Quando a pr\u00f3xima tentativa est\u00e1 agendada"
+    },
+    "stuck_detected_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Quando foi detectado como travado (processing >5min)"
+    },
+    "stuck_resolved_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Quando o travamento foi resolvido"
+    },
+    "dedup_verificado": {
+      "type": "boolean",
+      "description": "Passou pelo pipeline de deduplica\u00e7\u00e3o",
+      "default": false
+    },
+    "dedup_resultado": {
+      "type": "string",
+      "enum": [
+        "unique",
+        "duplicate_skip",
+        "duplicate_confirmed"
+      ],
+      "description": "Resultado da deduplica\u00e7\u00e3o"
+    },
+    "sanitize_method": {
+      "type": "string",
+      "enum": [
+        "regex_only",
+        "regex_heuristic",
+        "hybrid_llm"
+      ],
+      "description": "M\u00e9todo de sanitiza\u00e7\u00e3o usado"
+    },
+    "sanitize_tokens_usados": {
+      "type": "number",
+      "description": "Tokens usados na sanitiza\u00e7\u00e3o"
+    },
+    "sanitize_custo_usd": {
+      "type": "number",
+      "description": "Custo USD da sanitiza\u00e7\u00e3o"
+    }
+  },
+  "required": [
+    "empresaId",
+    "gravacao_id"
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "name": "Script",
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa (tenant)"
+    },
+    "nome": {
+      "type": "string",
+      "description": "Nome do script (ex: Liga\u00e7\u00e3o 1, Liga\u00e7\u00e3o 2)"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "ligacao",
+        "whatsapp",
+        "email",
+        "enviar_contrato",
+        "recebimento",
+        "instagram"
+      ],
+      "description": "Tipo de script"
+    },
+    "conteudo": {
+      "type": "string",
+      "description": "Conte\u00fado do script ou mensagem"
+    },
+    "imagens": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "URLs das imagens anexadas (WhatsApp/Email)"
+    },
+    "arquivos": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "tipo": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Arquivos anexados (PDF, etc)"
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Links para enviar junto (WhatsApp/Email)"
+    },
+    "ordem": {
+      "type": "number",
+      "description": "Ordem de exibi\u00e7\u00e3o"
+    },
+    "ativo": {
+      "type": "boolean",
+      "default": true
+    },
+    "produto_id": {
+      "type": "string",
+      "description": "ID do produto associado ao script"
+    },
+    "produto_nome": {
+      "type": "string",
+      "description": "Nome do produto (para facilitar busca)"
+    }
+  },
+  "required": [
+    "empresaId",
+    "nome",
+    "tipo",
+    "conteudo"
+  ]
+}

@@ -1,0 +1,450 @@
+{
+  "name": "Lead",
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa (tenant)"
+    },
+    "filial_id": {
+      "type": "string",
+      "description": "ID da filial do lead"
+    },
+    "nome": {
+      "type": "string",
+      "description": "Nome completo do lead"
+    },
+    "telefone": {
+      "type": "string",
+      "description": "Telefone com DDD"
+    },
+    "email": {
+      "type": "string",
+      "description": "E-mail do lead"
+    },
+    "empresa": {
+      "type": "string",
+      "description": "Empresa do lead"
+    },
+    "cargo": {
+      "type": "string",
+      "description": "Cargo do lead"
+    },
+    "origem": {
+      "type": "string",
+      "enum": [
+        "trafego_pago",
+        "indicacao",
+        "organico",
+        "evento",
+        "lista_fria",
+        "meta_ads",
+        "google_ads",
+        "instagram_feed",
+        "instagram_story",
+        "instagram",
+        "many_chat",
+        "email",
+        "campanha_whats",
+        "typeform",
+        "wordpress",
+        "landing_page",
+        "outro"
+      ],
+      "description": "Origem do lead"
+    },
+    "campanha": {
+      "type": "string",
+      "description": "Nome da campanha de origem"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "novo",
+        "em_cadencia",
+        "em_contato",
+        "respondeu",
+        "reuniao_agendada",
+        "reuniao_realizada",
+        "qualificado",
+        "proposta_enviada",
+        "em_negociacao",
+        "venda_sucesso",
+        "perdido",
+        "desqualificado",
+        "sem_interesse"
+      ],
+      "default": "novo"
+    },
+    "sdr_responsavel": {
+      "type": "string",
+      "description": "Email do SDR respons\u00e1vel"
+    },
+    "closer_responsavel": {
+      "type": "string",
+      "description": "Email do Closer respons\u00e1vel"
+    },
+    "equipe": {
+      "type": "string",
+      "description": "Nome da equipe"
+    },
+    "cadencia_id": {
+      "type": "string",
+      "description": "ID da cad\u00eancia ativa"
+    },
+    "dia_cadencia": {
+      "type": "number",
+      "default": 1,
+      "description": "Dia atual na cad\u00eancia"
+    },
+    "data_inicio_cadencia": {
+      "type": "string",
+      "format": "date",
+      "description": "Data de in\u00edcio da cad\u00eancia"
+    },
+    "data_reuniao": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Data/hora da reuni\u00e3o agendada"
+    },
+    "produto_interesse": {
+      "type": "string",
+      "description": "ID do produto de interesse do lead"
+    },
+    "produto_interesse_nome": {
+      "type": "string",
+      "description": "Nome do produto de interesse"
+    },
+    "valor_potencial": {
+      "type": "number",
+      "description": "Valor potencial do neg\u00f3cio em R$"
+    },
+    "observacoes": {
+      "type": "string",
+      "description": "Observa\u00e7\u00f5es gerais"
+    },
+    "instagram": {
+      "type": "string",
+      "description": "Usu\u00e1rio do Instagram"
+    },
+    "facebook": {
+      "type": "string",
+      "description": "URL ou usu\u00e1rio do Facebook"
+    },
+    "tiktok": {
+      "type": "string",
+      "description": "Usu\u00e1rio do TikTok"
+    },
+    "linkedin": {
+      "type": "string",
+      "description": "URL do LinkedIn"
+    },
+    "fonte_externa": {
+      "type": "boolean",
+      "default": false,
+      "description": "Indica se o lead veio de uma fonte externa via webhook"
+    },
+    "app_origem": {
+      "type": "string",
+      "description": "Identificador do app ou sistema de origem do lead externo"
+    },
+    "campos_personalizados": {
+      "type": "object",
+      "description": "Campos personalizados din\u00e2micos do lead",
+      "additionalProperties": true
+    },
+    "cidade": {
+      "type": "string",
+      "description": "Cidade do lead/empresa"
+    },
+    "estado": {
+      "type": "string",
+      "description": "Estado (UF) do lead/empresa"
+    },
+    "qtd_tecnicos": {
+      "type": "number",
+      "description": "Quantidade de t\u00e9cnicos no p\u00e1tio"
+    },
+    "qtd_vendedores": {
+      "type": "number",
+      "description": "Quantidade de vendedores"
+    },
+    "qtd_administrativo": {
+      "type": "number",
+      "description": "Quantidade de funcion\u00e1rios no administrativo"
+    },
+    "contratou_consultoria": {
+      "type": "boolean",
+      "description": "Se a empresa j\u00e1 contratou uma consultoria antes"
+    },
+    "tempo_seguindo": {
+      "type": "string",
+      "description": "H\u00e1 quanto tempo nos segue"
+    },
+    "qtd_unidades": {
+      "type": "number",
+      "description": "Quantidade de unidades da empresa"
+    },
+    "tipo_rede": {
+      "type": "string",
+      "enum": [
+        "independente",
+        "franquia",
+        "rede_propria"
+      ],
+      "description": "Tipo de rede da empresa"
+    },
+    "tem_socios": {
+      "type": "boolean",
+      "description": "Se a empresa tem s\u00f3cios"
+    },
+    "nome_socio": {
+      "type": "string",
+      "description": "Nome do s\u00f3cio"
+    },
+    "telefone_socio": {
+      "type": "string",
+      "description": "Telefone do s\u00f3cio"
+    },
+    "ja_cliente": {
+      "type": "boolean",
+      "default": false,
+      "description": "Se o lead j\u00e1 \u00e9 cliente"
+    },
+    "produtos_comprados": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "IDs dos produtos j\u00e1 comprados pelo lead"
+    },
+    "is_locked_for_call": {
+      "type": "boolean",
+      "default": false,
+      "description": "Indica se o lead est\u00e1 bloqueado para liga\u00e7\u00e3o por outro agente"
+    },
+    "lock_agent_email": {
+      "type": "string",
+      "description": "Email do agente que bloqueou o lead para liga\u00e7\u00e3o"
+    },
+    "lock_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Data/hora em que o lock foi aplicado"
+    },
+    "call_session_id": {
+      "type": "string",
+      "description": "ID da sess\u00e3o de liga\u00e7\u00e3o ativa"
+    },
+    "ultima_ligacao_em": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Data/hora da \u00faltima liga\u00e7\u00e3o realizada"
+    },
+    "total_ligacoes": {
+      "type": "number",
+      "default": 0,
+      "description": "Total de liga\u00e7\u00f5es realizadas para este lead"
+    },
+    "estagio_negociacao": {
+      "type": "string",
+      "enum": [
+        "proposta_enviada",
+        "em_negociacao",
+        "aguardando_decisao"
+      ],
+      "description": "Est\u00e1gio no funil de fechamento"
+    },
+    "previsao_fechamento": {
+      "type": "string",
+      "format": "date",
+      "description": "Data prevista de fechamento"
+    },
+    "proximo_passo": {
+      "type": "string",
+      "description": "Pr\u00f3xima a\u00e7\u00e3o definida pelo vendedor para este lead"
+    },
+    "probabilidade_fechamento": {
+      "type": "number",
+      "description": "Probabilidade de fechamento 0-100%"
+    },
+    "motivo_perda": {
+      "type": "string",
+      "enum": [
+        "preco",
+        "sem_momento",
+        "sem_orcamento",
+        "sem_prioridade",
+        "concorrencia",
+        "sem_fit",
+        "nao_respondeu",
+        "outro"
+      ],
+      "description": "Motivo da perda (venda perdida)"
+    },
+    "data_atribuicao": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Data/hora em que o lead foi atribu\u00eddo ao SDR atual"
+    },
+    "redistribuicoes_count": {
+      "type": "number",
+      "default": 0,
+      "description": "Quantas vezes este lead foi redistribu\u00eddo"
+    },
+    "redistribuido_em": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Data/hora da \u00faltima redistribui\u00e7\u00e3o"
+    },
+    "motivo_redistribuicao": {
+      "type": "string",
+      "enum": [
+        "urgente_sem_toque",
+        "retentativa_24h",
+        "retorno_vencido",
+        "manual"
+      ],
+      "description": "Motivo da \u00faltima redistribui\u00e7\u00e3o"
+    },
+    "check_perfil_oficina": {
+      "type": "boolean",
+      "default": false,
+      "description": "Checklist prepara\u00e7\u00e3o reuni\u00e3o: perfil da oficina analisado"
+    },
+    "check_marketing": {
+      "type": "boolean",
+      "default": false,
+      "description": "Checklist prepara\u00e7\u00e3o reuni\u00e3o: marketing analisado"
+    },
+    "check_financeiro": {
+      "type": "boolean",
+      "default": false,
+      "description": "Checklist prepara\u00e7\u00e3o reuni\u00e3o: financeiro analisado"
+    },
+    "check_equipe": {
+      "type": "boolean",
+      "default": false,
+      "description": "Checklist prepara\u00e7\u00e3o reuni\u00e3o: equipe analisada"
+    },
+    "check_principal_dor": {
+      "type": "boolean",
+      "default": false,
+      "description": "Checklist prepara\u00e7\u00e3o reuni\u00e3o: principal dor identificada"
+    },
+    "check_historico": {
+      "type": "boolean",
+      "default": false,
+      "description": "Checklist prepara\u00e7\u00e3o reuni\u00e3o: hist\u00f3rico revisado"
+    },
+    "notas_preparacao": {
+      "type": "string",
+      "description": "Notas de prepara\u00e7\u00e3o para a reuni\u00e3o"
+    },
+    "problema_identificado": {
+      "type": "string",
+      "description": "Problema identificado na reuni\u00e3o"
+    },
+    "impacto_identificado": {
+      "type": "string",
+      "description": "Impacto do problema no neg\u00f3cio"
+    },
+    "solucao_apresentada": {
+      "type": "string",
+      "description": "Solu\u00e7\u00e3o apresentada na reuni\u00e3o"
+    },
+    "plano_acao": {
+      "type": "string",
+      "description": "Plano de a\u00e7\u00e3o / o que ficou combinado"
+    },
+    "temperatura_lead": {
+      "type": "string",
+      "enum": [
+        "quente",
+        "morno",
+        "frio"
+      ],
+      "description": "Temperatura do lead ap\u00f3s reuni\u00e3o"
+    },
+    "valor_proposta": {
+      "type": "number",
+      "description": "Valor da proposta enviada"
+    },
+    "forma_pagamento": {
+      "type": "string",
+      "description": "Forma de pagamento da proposta"
+    },
+    "prazo_proposta": {
+      "type": "string",
+      "format": "date",
+      "description": "Prazo de decis\u00e3o da proposta"
+    },
+    "tipo_promessa": {
+      "type": "string",
+      "enum": [
+        "confirmado",
+        "pensando"
+      ],
+      "description": "Inten\u00e7\u00e3o de pagamento do lead"
+    },
+    "data_promessa_pagamento": {
+      "type": "string",
+      "format": "date",
+      "description": "Data prometida de pagamento ou decis\u00e3o"
+    },
+    "valor_original": {
+      "type": "number",
+      "description": "Valor original antes de desconto"
+    },
+    "desconto_pct": {
+      "type": "number",
+      "description": "Percentual de desconto aplicado"
+    },
+    "parcelas": {
+      "type": "number",
+      "description": "N\u00famero de parcelas"
+    },
+    "valor_entrada": {
+      "type": "number",
+      "description": "Valor de entrada (boleto)"
+    },
+    "valor_kify": {
+      "type": "number",
+      "description": "Valor simulado no Kify (cart\u00e3o parcelado)"
+    },
+    "objecoes": {
+      "type": "string",
+      "description": "Obje\u00e7\u00f5es levantadas pelo lead"
+    },
+    "proximo_contato": {
+      "type": "string",
+      "description": "Data/hora do pr\u00f3ximo contato agendado"
+    },
+    "produto_nome": {
+      "type": "string",
+      "description": "Nome do produto da proposta"
+    },
+    "produto_id": {
+      "type": "string",
+      "description": "ID do produto da proposta"
+    }
+  },
+  "required": [
+    "empresaId",
+    "nome",
+    "telefone"
+  ],
+  "rls": {
+    "read": {
+      "data.empresaId": "{{user.data.empresaAtualId}}"
+    },
+    "update": {
+      "data.empresaId": "{{user.data.empresaAtualId}}"
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

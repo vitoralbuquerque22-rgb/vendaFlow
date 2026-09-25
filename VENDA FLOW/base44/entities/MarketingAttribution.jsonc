@@ -1,0 +1,99 @@
+{
+  "type": "object",
+  "properties": {
+    "lead_id": {
+      "type": "string",
+      "description": "ID do lead vinculado"
+    },
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa (tenant)"
+    },
+    "source": {
+      "type": "string",
+      "description": "Fonte de tr\u00e1fego (ex: google, meta, organic)"
+    },
+    "channel": {
+      "type": "string",
+      "description": "Canal de marketing (ex: paid_search, organic)"
+    },
+    "campaign": {
+      "type": "string",
+      "description": "Nome da campanha"
+    },
+    "content": {
+      "type": "string",
+      "description": "Criativo / conte\u00fado do an\u00fancio"
+    },
+    "audience": {
+      "type": "string",
+      "description": "P\u00fablico-alvo segmentado"
+    },
+    "touchpoint": {
+      "type": "string",
+      "description": "Ponto de contato (ex: form, click)"
+    },
+    "identifier": {
+      "type": "string",
+      "description": "Identificador \u00fanico da sess\u00e3o ou atribui\u00e7\u00e3o"
+    },
+    "utm_source": {
+      "type": "string",
+      "description": "Par\u00e2metro UTM source"
+    },
+    "utm_medium": {
+      "type": "string",
+      "description": "Par\u00e2metro UTM medium"
+    },
+    "utm_campaign": {
+      "type": "string",
+      "description": "Par\u00e2metro UTM campaign"
+    },
+    "utm_content": {
+      "type": "string",
+      "description": "Par\u00e2metro UTM content"
+    },
+    "utm_term": {
+      "type": "string",
+      "description": "Par\u00e2metro UTM term"
+    },
+    "campaign_id": {
+      "type": "string",
+      "description": "ID da campanha no Ad Manager"
+    },
+    "adset_id": {
+      "type": "string",
+      "description": "ID do conjunto de an\u00fancios"
+    },
+    "ad_id": {
+      "type": "string",
+      "description": "ID do an\u00fancio"
+    },
+    "placement": {
+      "type": "string",
+      "description": "Posicionamento do an\u00fancio"
+    },
+    "gclid": {
+      "type": "string",
+      "description": "Google Click ID"
+    },
+    "landing_page": {
+      "type": "string",
+      "description": "URL da landing page de convers\u00e3o"
+    },
+    "first_touch": {
+      "type": "string",
+      "description": "Data/hora do primeiro contato (ISO 8601)"
+    },
+    "last_touch": {
+      "type": "string",
+      "description": "Data/hora da \u00faltima intera\u00e7\u00e3o (ISO 8601)"
+    },
+    "captured_at": {
+      "type": "string",
+      "description": "Data/hora da captura (ISO 8601)"
+    }
+  },
+  "required": [],
+  "name": "MarketingAttribution"
+}

@@ -1,0 +1,151 @@
+{
+  "name": "Atividade",
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa (tenant)"
+    },
+    "call_session_id": {
+      "type": "string",
+      "description": "ID da CallSession vinculada"
+    },
+    "campanha": {
+      "type": "string",
+      "description": "Campanha do lead"
+    },
+    "chamada_id_3cplus": {
+      "type": "string",
+      "description": "ID da chamada no 3C Plus"
+    },
+    "dia_cadencia": {
+      "type": "number",
+      "description": "Dia da cad\u00eancia quando foi executada"
+    },
+    "duracao_segundos": {
+      "type": "number",
+      "description": "Dura\u00e7\u00e3o em segundos"
+    },
+    "equipe": {
+      "type": "string",
+      "description": "Equipe do SDR"
+    },
+    "gravacao_url": {
+      "type": "string",
+      "description": "URL da grava\u00e7\u00e3o da liga\u00e7\u00e3o"
+    },
+    "lead_id": {
+      "type": "string",
+      "description": "ID do lead"
+    },
+    "lead_nome": {
+      "type": "string",
+      "description": "Nome do lead"
+    },
+    "lead_telefone": {
+      "type": "string",
+      "description": "Telefone do lead"
+    },
+    "observacao": {
+      "type": "string",
+      "description": "Observa\u00e7\u00f5es da atividade"
+    },
+    "origem_sincronizacao": {
+      "type": "string",
+      "enum": [
+        "manual",
+        "3cplus",
+        "webhook"
+      ],
+      "default": "manual",
+      "description": "Como esta atividade foi criada"
+    },
+    "periodo": {
+      "type": "string",
+      "enum": [
+        "manha",
+        "tarde"
+      ]
+    },
+    "produto_id": {
+      "type": "string",
+      "description": "ID do produto relacionado"
+    },
+    "produto_nome": {
+      "type": "string",
+      "description": "Nome do produto"
+    },
+    "resultado": {
+      "type": "string",
+      "enum": [
+        "atendeu",
+        "nao_atendeu",
+        "ocupado",
+        "caixa_postal",
+        "numero_invalido",
+        "respondeu",
+        "visualizou",
+        "nao_respondeu",
+        "reuniao_confirmada",
+        "reuniao_cancelada",
+        "reuniao_realizada",
+        "qualificado",
+        "sem_interesse",
+        "desqualificado",
+        "contrato_enviado",
+        "venda_realizada",
+        "cliente_desistiu",
+        "nao_comprou",
+        "outro"
+      ],
+      "description": "Resultado da atividade"
+    },
+    "script_usado": {
+      "type": "string",
+      "description": "Nome do script utilizado"
+    },
+    "sdr_email": {
+      "type": "string",
+      "description": "Email do SDR que executou"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "ligacao",
+        "whatsapp",
+        "email",
+        "pesquisa",
+        "reuniao_agendada",
+        "reuniao_realizada",
+        "anotacao"
+      ],
+      "description": "Tipo de atividade"
+    },
+    "tpa_segundos": {
+      "type": "number",
+      "default": 0,
+      "description": "Tempo p\u00f3s-atendimento em segundos"
+    }
+  },
+  "required": [
+    "empresaId",
+    "lead_id",
+    "tipo"
+  ],
+  "rls": {
+    "create": {
+      "data.empresaId": "{{user.data.empresaAtualId}}"
+    },
+    "read": {
+      "data.empresaId": "{{user.data.empresaAtualId}}"
+    },
+    "update": {
+      "data.empresaId": "{{user.data.empresaAtualId}}"
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

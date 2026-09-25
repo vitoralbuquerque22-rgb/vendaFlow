@@ -1,0 +1,84 @@
+{
+  "name": "CampanhaAgendada",
+  "type": "object",
+  "properties": {
+    "nome": {
+      "type": "string",
+      "description": "Nome da campanha"
+    },
+    "template_id": {
+      "type": "string",
+      "description": "ID do template"
+    },
+    "template_nome": {
+      "type": "string",
+      "description": "Nome do template"
+    },
+    "filtro_status": {
+      "type": "string",
+      "default": "todos",
+      "description": "Filtro de status dos leads"
+    },
+    "filtro_origem": {
+      "type": "string",
+      "default": "todas",
+      "description": "Filtro de origem dos leads"
+    },
+    "data_envio": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Data/hora programada para envio"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pendente",
+        "enviado",
+        "cancelado",
+        "erro"
+      ],
+      "default": "pendente",
+      "description": "Status da campanha agendada"
+    },
+    "enviado_por": {
+      "type": "string",
+      "description": "Email do usu\u00e1rio que agendou"
+    },
+    "sequencia_id": {
+      "type": "string",
+      "description": "ID da sequ\u00eancia (se faz parte de uma)"
+    },
+    "ordem_sequencia": {
+      "type": "number",
+      "description": "Ordem na sequ\u00eancia"
+    },
+    "dias_apos_anterior": {
+      "type": "number",
+      "description": "Dias ap\u00f3s o envio anterior (para sequ\u00eancias)"
+    },
+    "total_enviados": {
+      "type": "number",
+      "default": 0,
+      "description": "Total de emails enviados"
+    },
+    "total_falhas": {
+      "type": "number",
+      "default": 0,
+      "description": "Total de falhas no envio"
+    },
+    "data_execucao": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Data/hora da execu\u00e7\u00e3o real"
+    },
+    "erro_mensagem": {
+      "type": "string",
+      "description": "Mensagem de erro (se houver)"
+    }
+  },
+  "required": [
+    "nome",
+    "template_id",
+    "data_envio"
+  ]
+}

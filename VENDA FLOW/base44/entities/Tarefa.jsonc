@@ -1,0 +1,154 @@
+{
+  "name": "Tarefa",
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa (tenant)"
+    },
+    "lead_id": {
+      "type": "string",
+      "description": "ID do lead"
+    },
+    "lead_nome": {
+      "type": "string",
+      "description": "Nome do lead"
+    },
+    "lead_telefone": {
+      "type": "string",
+      "description": "Telefone do lead"
+    },
+    "lead_empresa": {
+      "type": "string",
+      "description": "Empresa do lead"
+    },
+    "sdr_email": {
+      "type": "string",
+      "description": "Email do respons\u00e1vel (SDR ou Closer)"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "ligacao",
+        "whatsapp",
+        "email",
+        "pesquisa",
+        "reuniao",
+        "realizar_reuniao",
+        "enviar_contrato",
+        "recebimento",
+        "case_sucesso",
+        "instagram"
+      ],
+      "description": "Tipo de tarefa"
+    },
+    "data_prevista": {
+      "type": "string",
+      "format": "date",
+      "description": "Data prevista para execu\u00e7\u00e3o"
+    },
+    "periodo": {
+      "type": "string",
+      "enum": [
+        "manha",
+        "tarde"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pendente",
+        "concluida",
+        "atrasada",
+        "cancelada",
+        "encerrada_automaticamente"
+      ],
+      "default": "pendente"
+    },
+    "motivo_encerramento": {
+      "type": "string",
+      "enum": [
+        "desqualificacao",
+        "sem_interesse",
+        "conversao",
+        "reuniao_agendada",
+        "followup_agendado",
+        "venda",
+        "perda",
+        "nao_compareceu",
+        "transferencia"
+      ],
+      "description": "Motivo do encerramento autom\u00e1tico"
+    },
+    "origem": {
+      "type": "string",
+      "description": "Origem da cria\u00e7\u00e3o da tarefa (ex: proximo_contato)"
+    },
+    "resultado_venda": {
+      "type": "string",
+      "enum": [
+        "venda_realizada",
+        "cliente_desistiu",
+        "nao_comprou"
+      ],
+      "description": "Resultado da venda (para tarefas de Closer)"
+    },
+    "dia_cadencia": {
+      "type": "number",
+      "description": "Dia da cad\u00eancia"
+    },
+    "cadencia_id": {
+      "type": "string",
+      "description": "ID da cad\u00eancia"
+    },
+    "script_id": {
+      "type": "string",
+      "description": "ID do script sugerido"
+    },
+    "campanha": {
+      "type": "string"
+    },
+    "equipe": {
+      "type": "string"
+    },
+    "produto_id": {
+      "type": "string",
+      "description": "ID do produto relacionado"
+    },
+    "produto_nome": {
+      "type": "string",
+      "description": "Nome do produto (para facilitar busca)"
+    },
+    "observacao": {
+      "type": "string",
+      "description": "Observa\u00e7\u00f5es e detalhes da tarefa"
+    },
+    "google_calendar_event_id": {
+      "type": "string",
+      "description": "ID do evento no Google Calendar"
+    }
+  },
+  "required": [
+    "empresaId",
+    "lead_id",
+    "tipo",
+    "data_prevista",
+    "periodo"
+  ],
+  "rls": {
+    "create": {
+      "data.empresaId": "{{user.data.empresaAtualId}}"
+    },
+    "read": {
+      "data.empresaId": "{{user.data.empresaAtualId}}"
+    },
+    "update": {
+      "data.empresaId": "{{user.data.empresaAtualId}}"
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

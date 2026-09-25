@@ -1,0 +1,84 @@
+{
+  "name": "RelatorioPerformance",
+  "type": "object",
+  "properties": {
+    "colaborador_email": {
+      "type": "string",
+      "description": "Email do colaborador"
+    },
+    "colaborador_nome": {
+      "type": "string",
+      "description": "Nome do colaborador"
+    },
+    "mes_referencia": {
+      "type": "string",
+      "description": "M\u00eas de refer\u00eancia (YYYY-MM)"
+    },
+    "metricas": {
+      "type": "object",
+      "description": "M\u00e9tricas calculadas",
+      "properties": {
+        "totalLeads": {
+          "type": "number"
+        },
+        "totalAtividades": {
+          "type": "number"
+        },
+        "totalLigacoes": {
+          "type": "number"
+        },
+        "ligacoesAtendidas": {
+          "type": "number"
+        },
+        "taxaAtendimento": {
+          "type": "number"
+        },
+        "reunioesAgendadas": {
+          "type": "number"
+        },
+        "reunioesRealizadas": {
+          "type": "number"
+        },
+        "taxaAgendamento": {
+          "type": "number"
+        },
+        "taxaComparecimento": {
+          "type": "number"
+        },
+        "tempoMedioResposta": {
+          "type": "number"
+        },
+        "totalTarefas": {
+          "type": "number"
+        },
+        "tarefasConcluidas": {
+          "type": "number"
+        },
+        "tarefasAtrasadas": {
+          "type": "number"
+        },
+        "tarefasPendentes": {
+          "type": "number"
+        },
+        "taxaConclusao": {
+          "type": "number"
+        }
+      }
+    },
+    "relatorio_ia": {
+      "type": "string",
+      "description": "An\u00e1lise de performance gerada pela IA"
+    },
+    "avaliacoes": {
+      "type": "array",
+      "description": "Avalia\u00e7\u00f5es de produtos realizadas",
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "required": [
+    "colaborador_email",
+    "mes_referencia"
+  ]
+}

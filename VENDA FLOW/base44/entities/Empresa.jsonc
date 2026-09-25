@@ -1,0 +1,96 @@
+{
+  "name": "Empresa",
+  "type": "object",
+  "properties": {
+    "nome": {
+      "type": "string",
+      "description": "Nome da empresa"
+    },
+    "cnpj": {
+      "type": "string",
+      "description": "CNPJ da empresa"
+    },
+    "nomeProprietario": {
+      "type": "string",
+      "description": "Nome do propriet\u00e1rio/administrador da empresa"
+    },
+    "whatsappProprietario": {
+      "type": "string",
+      "description": "WhatsApp do propriet\u00e1rio"
+    },
+    "telefonePropietario": {
+      "type": "string",
+      "description": "Telefone do propriet\u00e1rio"
+    },
+    "plano": {
+      "type": "string",
+      "enum": [
+        "starter",
+        "pro",
+        "enterprise"
+      ],
+      "default": "starter",
+      "description": "Plano contratado"
+    },
+    "limiteUsuarios": {
+      "type": "number",
+      "default": 5,
+      "description": "N\u00famero m\u00e1ximo de usu\u00e1rios"
+    },
+    "statusPlano": {
+      "type": "string",
+      "enum": [
+        "ativo",
+        "cancelado",
+        "bloqueado"
+      ],
+      "default": "ativo",
+      "description": "Status do plano"
+    },
+    "dataRenovacao": {
+      "type": "string",
+      "format": "date",
+      "description": "Data de renova\u00e7\u00e3o do plano"
+    },
+    "ownerEmail": {
+      "type": "string",
+      "description": "Email do administrador principal"
+    },
+    "webhook_token": {
+      "type": "string",
+      "description": "Token de autentica\u00e7\u00e3o para webhooks externos receberem leads"
+    }
+  },
+  "required": [
+    "nome",
+    "cnpj",
+    "ownerEmail",
+    "limiteUsuarios",
+    "nomeProprietario"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "$or": [
+        {
+          "data.ownerEmail": "{{user.email}}"
+        },
+        {
+          "id": "{{user.data.empresaAtualId}}"
+        }
+      ]
+    },
+    "update": {
+      "data.ownerEmail": "{{user.email}}"
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

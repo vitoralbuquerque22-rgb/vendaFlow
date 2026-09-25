@@ -1,0 +1,75 @@
+{
+  "name": "CampanhaVendaFlow",
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa (tenant)"
+    },
+    "nome": {
+      "type": "string",
+      "description": "Nome da campanha"
+    },
+    "descricao": {
+      "type": "string",
+      "description": "Descri\u00e7\u00e3o da campanha"
+    },
+    "campanha_id_3cplus": {
+      "type": "number",
+      "description": "ID da campanha no 3C Plus"
+    },
+    "lista_id_3cplus": {
+      "type": "number",
+      "description": "ID da lista no 3C Plus"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "rascunho",
+        "ativa",
+        "pausada",
+        "encerrada",
+        "erro"
+      ],
+      "default": "rascunho",
+      "description": "Status da campanha"
+    },
+    "fonte": {
+      "type": "string",
+      "enum": [
+        "csv",
+        "leads_crm",
+        "manual"
+      ],
+      "description": "Fonte dos leads"
+    },
+    "total_leads": {
+      "type": "number",
+      "default": 0,
+      "description": "Total de leads na campanha"
+    },
+    "criada_por": {
+      "type": "string",
+      "description": "Email do usu\u00e1rio que criou a campanha"
+    },
+    "config_3cplus": {
+      "type": "object",
+      "description": "Configura\u00e7\u00f5es da campanha no 3C Plus",
+      "additionalProperties": true
+    },
+    "erro_mensagem": {
+      "type": "string",
+      "description": "Mensagem de erro caso a campanha falhe"
+    },
+    "data_criacao": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Data/hora de cria\u00e7\u00e3o da campanha"
+    }
+  },
+  "required": [
+    "empresaId",
+    "nome",
+    "criada_por"
+  ]
+}

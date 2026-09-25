@@ -1,0 +1,68 @@
+{
+  "name": "CustomRole",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Nome da role customizada"
+    },
+    "description": {
+      "type": "string",
+      "description": "Descri\u00e7\u00e3o da role"
+    },
+    "base_role": {
+      "type": "string",
+      "enum": [
+        "admin",
+        "gestor",
+        "sdr",
+        "closer"
+      ],
+      "description": "Role base para herdar permiss\u00f5es"
+    },
+    "permissions": {
+      "type": "object",
+      "description": "Permiss\u00f5es da role",
+      "properties": {
+        "pages": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "read": {
+                "type": "boolean"
+              },
+              "create": {
+                "type": "boolean"
+              },
+              "update": {
+                "type": "boolean"
+              },
+              "delete": {
+                "type": "boolean"
+              }
+            }
+          }
+        },
+        "features": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true
+    },
+    "created_by": {
+      "type": "string",
+      "description": "Email do criador"
+    }
+  },
+  "required": [
+    "name",
+    "base_role"
+  ]
+}

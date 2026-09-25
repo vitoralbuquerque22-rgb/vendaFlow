@@ -1,0 +1,68 @@
+{
+  "name": "Filial",
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa (tenant)"
+    },
+    "nome": {
+      "type": "string",
+      "description": "Nome da filial"
+    },
+    "endereco": {
+      "type": "string",
+      "description": "Endere\u00e7o da filial"
+    },
+    "cidade": {
+      "type": "string",
+      "description": "Cidade da filial"
+    },
+    "estado": {
+      "type": "string",
+      "description": "Estado (UF) da filial"
+    },
+    "gerente_email": {
+      "type": "string",
+      "description": "Email do gerente da filial"
+    },
+    "ativa": {
+      "type": "boolean",
+      "default": true,
+      "description": "Se a filial est\u00e1 ativa"
+    }
+  },
+  "required": [
+    "empresaId",
+    "nome"
+  ],
+  "rls": {
+    "read": {
+      "data.empresaId": "{{user.data.empresaAtualId}}"
+    },
+    "update": {
+      "$or": [
+        {
+          "user_condition": {
+            "role": "gestor_empresa"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "gerente_empresa"
+          }
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "user_condition": {
+        "role": "gestor_empresa"
+      }
+    }
+  }
+}

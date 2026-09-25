@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 20% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 20% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 20% 10%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 222 20% 20%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 10% 50%;
+    --accent: 220 14% 96%;
+    --accent-foreground: 222 20% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 14% 91%;
+    --input: 220 14% 91%;
+    --ring: 222 20% 20%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.625rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+/* ─── App Shell ─────────────────────────────────────────────── */
+#root {
+  background: #070b12;
+}
+
+/* ─── Sidebar refinements ───────────────────────────────────── */
+aside {
+  background: #08091011 !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ─── Scrollbar slim & elegant ──────────────────────────────── */
+/* Scrollbar invisível (funcional) */
+* {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* ─── Selection ─────────────────────────────────────────────── */
+::selection {
+  background: rgba(255, 107, 53, 0.25);
+  color: #fff;
+}
+
+/* ─── Smooth focus rings ─────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid rgba(255, 107, 53, 0.5);
+  outline-offset: 2px;
+}
+
+/* ─── Card glass effect ─────────────────────────────────────── */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ─── Typography scale ──────────────────────────────────────── */
+h1 { letter-spacing: -0.025em; font-weight: 700; }
+h2 { letter-spacing: -0.02em;  font-weight: 600; }
+h3 { letter-spacing: -0.015em; font-weight: 600; }
+
+/* ─── Transition defaults ───────────────────────────────────── */
+button, a, input, select, textarea {
+  transition: all 0.18s ease;
+}
+
+/* ─── Input & select global dark theme ──────────────────────── */
+input, textarea, select {
+  color: #e2e8f0 !important;
+  background-color: rgba(15, 20, 32, 0.8) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: rgba(148, 163, 184, 0.5) !important;
+}
+
+input:focus, textarea:focus {
+  border-color: rgba(255, 107, 53, 0.4) !important;
+  box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.08) !important;
+}
+
+label {
+  color: #94a3b8 !important;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+/* ─── Radix popover / select / dropdown dark theme ──────────── */
+* {
+  color-scheme: dark;
+}
+
+[data-radix-select-content],
+[data-radix-dropdown-menu-content],
+[data-radix-popover-content],
+[data-radix-dialog-content] {
+  background: #0f1624 !important;
+  border: 1px solid rgba(255, 255, 255, 0.07) !important;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 4px 16px rgba(0,0,0,0.3) !important;
+  border-radius: 12px !important;
+}
+
+[data-radix-select-item],
+[data-radix-dropdown-menu-item] {
+  color: #cbd5e1 !important;
+  border-radius: 8px !important;
+  font-size: 0.875rem;
+}
+
+[data-radix-select-item]:hover,
+[data-radix-select-item][data-highlighted],
+[data-radix-dropdown-menu-item]:hover,
+[data-radix-dropdown-menu-item][data-highlighted] {
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.15), rgba(255, 140, 66, 0.1)) !important;
+  color: #fff !important;
+}
+
+[data-radix-select-item][data-state="checked"] {
+  background: linear-gradient(135deg, rgba(255, 107, 53, 0.2), rgba(255, 140, 66, 0.12)) !important;
+  color: #ff8c42 !important;
+}
+
+[role="option"], [role="menuitem"], [role="listbox"] {
+  color: #cbd5e1 !important;
+}

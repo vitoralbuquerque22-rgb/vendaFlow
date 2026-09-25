@@ -1,0 +1,251 @@
+{
+  "name": "GravacaoLigacao",
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa (tenant)"
+    },
+    "call_session_id": {
+      "type": "string",
+      "description": "FK \u2192 CallSession origem"
+    },
+    "call_id_3cplus": {
+      "type": "string",
+      "description": "ID da chamada no 3C Plus \u2014 chave de idempot\u00eancia"
+    },
+    "checksum_audio": {
+      "type": "string",
+      "description": "SHA-256 dos primeiros 64KB do \u00e1udio \u2014 deduplica\u00e7\u00e3o"
+    },
+    "checksum_metadata": {
+      "type": "string",
+      "description": "SHA-256 de sdr_email+lead_telefone+data+duracao \u2014 dedup r\u00e1pido"
+    },
+    "is_duplicate": {
+      "type": "boolean",
+      "description": "Flag de duplicata detectada"
+    },
+    "deduplicado_de": {
+      "type": "string",
+      "description": "ID da GravacaoLigacao original se for duplicata"
+    },
+    "dedup_method": {
+      "type": "string",
+      "enum": [
+        "call_id",
+        "checksum_audio",
+        "checksum_metadata",
+        "manual"
+      ],
+      "description": "M\u00e9todo que detectou a duplicata"
+    },
+    "sdr_email": {
+      "type": "string",
+      "description": "Email do SDR \u2014 filtro principal de permiss\u00e3o"
+    },
+    "sdr_nome": {
+      "type": "string",
+      "description": "Nome desnormalizado \u2014 evita JOIN"
+    },
+    "lead_id": {
+      "type": "string",
+      "description": "FK \u2192 Lead (opcional)"
+    },
+    "lead_nome": {
+      "type": "string",
+      "description": "Nome mascarado ap\u00f3s sanitiza\u00e7\u00e3o"
+    },
+    "lead_nome_original": {
+      "type": "string",
+      "description": "Nome original preservado para auditoria LGPD"
+    },
+    "lead_telefone": {
+      "type": "string",
+      "description": "Telefone mascarado ap\u00f3s sanitiza\u00e7\u00e3o"
+    },
+    "lead_telefone_original": {
+      "type": "string",
+      "description": "Telefone original preservado para auditoria LGPD"
+    },
+    "campanha_id": {
+      "type": "string",
+      "description": "ID da campanha 3C Plus"
+    },
+    "campanha_nome": {
+      "type": "string",
+      "description": "Nome desnormalizado"
+    },
+    "duracao_segundos": {
+      "type": "number",
+      "description": "Dura\u00e7\u00e3o total em segundos"
+    },
+    "resultado": {
+      "type": "string",
+      "description": "Resultado da liga\u00e7\u00e3o (atendeu, n\u00e3o atendeu, etc)"
+    },
+    "data_gravacao": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp original do 3C Plus"
+    },
+    "transcricao": {
+      "type": "string",
+      "description": "Transcri\u00e7\u00e3o completa \u2014 vis\u00edvel s\u00f3 admin/gestor"
+    },
+    "transcricao_anonimizada": {
+      "type": "string",
+      "description": "Vers\u00e3o sanitizada para uso em treinamentos (LGPD)"
+    },
+    "transcricao_status": {
+      "type": "string",
+      "enum": [
+        "none",
+        "queued",
+        "processing",
+        "done",
+        "failed",
+        "timeout",
+        "stuck"
+      ],
+      "description": "Status da fila de transcri\u00e7\u00e3o",
+      "default": "none"
+    },
+    "analise_ia": {
+      "type": "object",
+      "description": "Resultado da an\u00e1lise IA estruturada"
+    },
+    "analise_ia_version": {
+      "type": "string",
+      "description": "Vers\u00e3o do resultado da an\u00e1lise (v1, v2...)"
+    },
+    "modelo_usado": {
+      "type": "string",
+      "description": "Modelo de IA usado (gpt-4o-mini, whisper-1...)"
+    },
+    "prompt_version": {
+      "type": "string",
+      "description": "Vers\u00e3o sem\u00e2ntica do prompt usado (v1.2.0)"
+    },
+    "analisado_em": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Quando a an\u00e1lise IA foi executada"
+    },
+    "waveform_peaks": {
+      "type": "array",
+      "description": "Peaks do \u00e1udio pr\u00e9-processados (p\u00f3s-migra\u00e7\u00e3o)"
+    },
+    "usar_treinamento": {
+      "type": "boolean",
+      "description": "Marcada para biblioteca de treinamento",
+      "default": false
+    },
+    "gravacao_url_backup": {
+      "type": "string",
+      "description": "URL no storage pr\u00f3prio \u2014 n\u00e3o depende do 3C Plus"
+    },
+    "titulo_treinamento": {
+      "type": "string",
+      "description": "T\u00edtulo edit\u00e1vel pelo supervisor"
+    },
+    "descricao_treinamento": {
+      "type": "string",
+      "description": "Contexto do treinamento"
+    },
+    "categoria_treinamento": {
+      "type": "string",
+      "enum": [
+        "abordagem",
+        "objecao",
+        "fechamento",
+        "comunicacao"
+      ],
+      "description": "Categoria do treinamento"
+    },
+    "classificacao_treinamento": {
+      "type": "string",
+      "enum": [
+        "fazer",
+        "evitar"
+      ],
+      "description": "Classifica\u00e7\u00e3o do exemplo"
+    },
+    "total_assistidos": {
+      "type": "number",
+      "description": "Cache COUNT de TreinamentoAssistido",
+      "default": 0
+    },
+    "taxa_conclusao": {
+      "type": "number",
+      "description": "Percentual cache de conclus\u00e3o do treinamento",
+      "default": 0
+    },
+    "sanitizado_em": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Quando foi sanitizado (LGPD)"
+    },
+    "sanitizado_por": {
+      "type": "string",
+      "description": "Email do gestor que aprovou a sanitiza\u00e7\u00e3o"
+    },
+    "sanitize_method": {
+      "type": "string",
+      "enum": [
+        "regex_only",
+        "regex_heuristic",
+        "hybrid_llm"
+      ],
+      "description": "M\u00e9todo usado na sanitiza\u00e7\u00e3o"
+    },
+    "sanitize_tokens_usados": {
+      "type": "number",
+      "description": "Tokens de LLM usados na sanitiza\u00e7\u00e3o (custo)"
+    },
+    "sanitize_custo_usd": {
+      "type": "number",
+      "description": "Custo USD da sanitiza\u00e7\u00e3o"
+    },
+    "expires_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "LIFECYCLE \u2014 quando pode ser soft-deletado"
+    },
+    "deleted_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "LIFECYCLE \u2014 soft delete timestamp"
+    },
+    "retention_policy": {
+      "type": "string",
+      "enum": [
+        "standard",
+        "extended",
+        "permanent",
+        "legal_hold"
+      ],
+      "description": "Pol\u00edtica de reten\u00e7\u00e3o LGPD",
+      "default": "standard"
+    },
+    "retention_reason": {
+      "type": "string",
+      "description": "Motivo para reten\u00e7\u00e3o estendida (ex: processo jur\u00eddico)"
+    },
+    "purge_scheduled_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Quando o worker vai executar o purge definitivo"
+    },
+    "purged_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Quando foi efetivamente purgado"
+    }
+  },
+  "required": [
+    "empresaId",
+    "sdr_email",
+    "data_gravacao"
+  ]
+}

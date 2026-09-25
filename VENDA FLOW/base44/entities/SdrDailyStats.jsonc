@@ -1,0 +1,84 @@
+{
+  "name": "SdrDailyStats",
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa (tenant)"
+    },
+    "user_email": {
+      "type": "string",
+      "description": "Email do SDR"
+    },
+    "dia": {
+      "type": "string",
+      "format": "date",
+      "description": "Data do agregado (YYYY-MM-DD)"
+    },
+    "atendimentos": {
+      "type": "number",
+      "default": 0,
+      "description": "Total de atendimentos realizados no dia"
+    },
+    "atendimentos_atendeu": {
+      "type": "number",
+      "default": 0,
+      "description": "Atendimentos com resultado 'atendeu'"
+    },
+    "followups": {
+      "type": "number",
+      "default": 0,
+      "description": "Follow-ups criados no dia"
+    },
+    "conversoes": {
+      "type": "number",
+      "default": 0,
+      "description": "Reuni\u00f5es agendadas ou leads qualificados"
+    },
+    "desqualificacoes": {
+      "type": "number",
+      "default": 0,
+      "description": "Leads desqualificados no dia"
+    },
+    "tempo_total_segundos": {
+      "type": "number",
+      "default": 0,
+      "description": "Soma do tempo de todos os atendimentos"
+    },
+    "tempo_medio_segundos": {
+      "type": "number",
+      "default": 0,
+      "description": "TMA m\u00e9dio do dia"
+    },
+    "taxa_conclusao": {
+      "type": "number",
+      "default": 0,
+      "description": "% de tarefas conclu\u00eddas no dia (0-100)"
+    },
+    "score_completude_medio": {
+      "type": "number",
+      "default": 0,
+      "description": "M\u00e9dia do score de completude dos atendimentos"
+    },
+    "score_qualidade_medio": {
+      "type": "number",
+      "default": 0,
+      "description": "M\u00e9dia do score de qualidade dos atendimentos"
+    },
+    "tarefas_pendentes": {
+      "type": "number",
+      "default": 0,
+      "description": "Tarefas ainda pendentes ao fim do dia"
+    },
+    "atualizado_em": {
+      "type": "string",
+      "format": "date-time",
+      "description": "\u00daltima atualiza\u00e7\u00e3o do agregado"
+    }
+  },
+  "required": [
+    "empresaId",
+    "user_email",
+    "dia"
+  ]
+}

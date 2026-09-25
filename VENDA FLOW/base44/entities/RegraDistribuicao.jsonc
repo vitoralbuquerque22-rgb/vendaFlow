@@ -1,0 +1,82 @@
+{
+  "name": "RegraDistribuicao",
+  "type": "object",
+  "properties": {
+    "nome": {
+      "type": "string",
+      "description": "Nome da regra"
+    },
+    "tipo": {
+      "type": "string",
+      "enum": [
+        "origem",
+        "campanha"
+      ],
+      "description": "Tipo de regra (por origem ou campanha espec\u00edfica)"
+    },
+    "origem": {
+      "type": "string",
+      "enum": [
+        "trafego_pago",
+        "meta_ads",
+        "google_ads",
+        "typeform",
+        "wordpress",
+        "indicacao",
+        "organico",
+        "evento",
+        "lista_fria",
+        "outro"
+      ],
+      "description": "Origem do lead (se tipo = origem)"
+    },
+    "campanha": {
+      "type": "string",
+      "description": "Nome da campanha espec\u00edfica (se tipo = campanha)"
+    },
+    "modo_distribuicao": {
+      "type": "string",
+      "enum": [
+        "fila",
+        "especifico"
+      ],
+      "default": "fila",
+      "description": "Fila (round-robin) ou espec\u00edfico"
+    },
+    "sdrs_atribuidos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Lista de emails dos SDRs para distribui\u00e7\u00e3o"
+    },
+    "closer_padrao": {
+      "type": "string",
+      "description": "Email do closer padr\u00e3o (opcional)"
+    },
+    "cadencia_id": {
+      "type": "string",
+      "description": "ID da cad\u00eancia a iniciar automaticamente"
+    },
+    "ativa": {
+      "type": "boolean",
+      "default": true,
+      "description": "Regra ativa"
+    },
+    "prioridade": {
+      "type": "number",
+      "default": 1,
+      "description": "Prioridade (menor n\u00famero = maior prioridade)"
+    },
+    "ultimo_indice_fila": {
+      "type": "number",
+      "default": 0,
+      "description": "\u00cdndice do \u00faltimo SDR que recebeu lead (para round-robin)"
+    }
+  },
+  "required": [
+    "nome",
+    "tipo",
+    "modo_distribuicao"
+  ]
+}

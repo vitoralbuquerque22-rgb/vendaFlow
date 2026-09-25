@@ -1,0 +1,79 @@
+{
+  "name": "FeedbackContestacao",
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa (tenant)"
+    },
+    "feedback_id": {
+      "type": "string",
+      "description": "FK \u2192 FeedbackLigacao"
+    },
+    "solicitante_email": {
+      "type": "string",
+      "description": "Email do SDR que contestou"
+    },
+    "solicitante_nome": {
+      "type": "string",
+      "description": "Nome desnormalizado"
+    },
+    "motivo": {
+      "type": "string",
+      "description": "Motivo da contesta\u00e7\u00e3o \u2014 m\u00ednimo 50 caracteres obrigat\u00f3rio"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "aberta",
+        "em_revisao",
+        "resolvida",
+        "rejeitada"
+      ],
+      "description": "Status do workflow de contesta\u00e7\u00e3o",
+      "default": "aberta"
+    },
+    "revisado_por": {
+      "type": "string",
+      "description": "Email do admin que assumiu a revis\u00e3o"
+    },
+    "revisado_em": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Quando o admin assumiu"
+    },
+    "resolucao": {
+      "type": "string",
+      "description": "Texto da decis\u00e3o final do admin"
+    },
+    "resolucao_tipo": {
+      "type": "string",
+      "enum": [
+        "mantido",
+        "ajustado",
+        "cancelado"
+      ],
+      "description": "Tipo de resolu\u00e7\u00e3o"
+    },
+    "pontuacao_ajustada": {
+      "type": "number",
+      "description": "Nova nota se resolucao_tipo=ajustado"
+    },
+    "sla_deadline": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Prazo SLA \u2014 5 dias \u00fateis da abertura"
+    },
+    "notificado_solicitante": {
+      "type": "boolean",
+      "description": "SDR foi notificado da resolu\u00e7\u00e3o",
+      "default": false
+    }
+  },
+  "required": [
+    "empresaId",
+    "feedback_id",
+    "solicitante_email",
+    "motivo"
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "name": "RespostaDiagnostico",
+  "type": "object",
+  "properties": {
+    "landing_page_id": {
+      "type": "string",
+      "description": "ID da landing page"
+    },
+    "landing_page_titulo": {
+      "type": "string",
+      "description": "T\u00edtulo da landing page"
+    },
+    "lead_id": {
+      "type": "string",
+      "description": "ID do lead criado/atualizado"
+    },
+    "dados_basicos": {
+      "type": "object",
+      "description": "Dados b\u00e1sicos capturados",
+      "properties": {
+        "nome": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "telefone": {
+          "type": "string"
+        },
+        "empresa": {
+          "type": "string"
+        },
+        "cargo": {
+          "type": "string"
+        }
+      }
+    },
+    "respostas": {
+      "type": "array",
+      "description": "Respostas do diagn\u00f3stico",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pergunta": {
+            "type": "string"
+          },
+          "resposta": {
+            "type": "string"
+          },
+          "peso_score": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "pontuacao_diagnostico": {
+      "type": "number",
+      "default": 0,
+      "description": "Pontua\u00e7\u00e3o obtida no diagn\u00f3stico"
+    },
+    "score_gerado": {
+      "type": "number",
+      "description": "Score de lead gerado"
+    },
+    "origem_utm": {
+      "type": "object",
+      "description": "Par\u00e2metros UTM de origem",
+      "properties": {
+        "utm_source": {
+          "type": "string"
+        },
+        "utm_medium": {
+          "type": "string"
+        },
+        "utm_campaign": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": [
+    "landing_page_id",
+    "dados_basicos"
+  ],
+  "rls": {
+    "create": {
+      "allow": true
+    }
+  }
+}

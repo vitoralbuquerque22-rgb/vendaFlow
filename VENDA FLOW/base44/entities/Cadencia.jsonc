@@ -1,0 +1,84 @@
+{
+  "name": "Cadencia",
+  "type": "object",
+  "properties": {
+    "empresaId": {
+      "type": "string",
+      "description": "ID da empresa (tenant)"
+    },
+    "nome": {
+      "type": "string",
+      "description": "Nome da cad\u00eancia"
+    },
+    "descricao": {
+      "type": "string",
+      "description": "Descri\u00e7\u00e3o da cad\u00eancia"
+    },
+    "tipo_cadencia": {
+      "type": "string",
+      "enum": [
+        "sdr",
+        "closer"
+      ],
+      "default": "sdr",
+      "description": "Tipo de cad\u00eancia (SDR ou Closer)"
+    },
+    "cadencia_closer_id": {
+      "type": "string",
+      "description": "ID da cad\u00eancia de Closer a ser iniciada automaticamente ap\u00f3s agendamento"
+    },
+    "duracao_dias": {
+      "type": "number",
+      "description": "Dura\u00e7\u00e3o total em dias"
+    },
+    "ativa": {
+      "type": "boolean",
+      "default": true
+    },
+    "etapas": {
+      "type": "array",
+      "description": "Lista de etapas por dia",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dia": {
+            "type": "number"
+          },
+          "periodo": {
+            "type": "string",
+            "enum": [
+              "manha",
+              "tarde"
+            ]
+          },
+          "tipo": {
+            "type": "string",
+            "enum": [
+              "ligacao",
+              "whatsapp",
+              "email",
+              "pesquisa",
+              "realizar_reuniao",
+              "enviar_contrato",
+              "recebimento",
+              "case_sucesso",
+              "instagram"
+            ]
+          },
+          "script_id": {
+            "type": "string"
+          },
+          "mensagem_id": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "empresaId",
+    "nome",
+    "duracao_dias",
+    "tipo_cadencia"
+  ]
+}
